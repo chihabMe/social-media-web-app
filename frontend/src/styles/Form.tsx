@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { primaryColor } from './colors';
+import { textColor,primaryColor } from './colors';
 
 
 export const Form = styled.form`
@@ -7,7 +7,6 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap:1rem;
-    padding:1rem 2rem;
 `
 export const FormController = styled.div`
     display: flex;
@@ -20,5 +19,5 @@ export const Label = styled.label`
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: capitalize;
-    color:black;
+    color:${textColor};
 `

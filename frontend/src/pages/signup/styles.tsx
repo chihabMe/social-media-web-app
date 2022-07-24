@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { primaryColor } from "../../styles/colors";
+import { primaryColor, textColor } from "../../styles/colors";
 
 export const SignupPage  = styled.div`
     width:100%;
@@ -13,10 +13,17 @@ export const SignupPage  = styled.div`
 
 export const SignUpFormWrapper = styled.div`
     width:100%;
-    max-width: 500px;
+    max-width: 350px;
     padding:1rem;
     text-align:left ;
-    gap:1rem;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+`
+export const SignUpTitle = styled.h2`
+    font-weight:bold;
+    color:${textColor};
+    font-size:2.5rem;
 `
 export const GoToLogIn = styled(Link)`
     color:${primaryColor};

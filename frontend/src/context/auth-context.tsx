@@ -74,8 +74,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         localStorage.setItem("access",data.access)
         localStorage.setItem("refresh",data.refresh)
         }catch(err){
-            console.log(err)
-            console.log("response")
             setError("problem")
         }
         setIsLoading(false)
@@ -91,7 +89,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         localStorage.removeItem("access")
         localStorage.removeItem("refresh")
     }
-
 
     let value={
         isLogged,

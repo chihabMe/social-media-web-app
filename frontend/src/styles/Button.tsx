@@ -8,6 +8,7 @@ interface buttonInterface  {
   radius?:string|undefined;
   size?:string;
   border?:string;
+  valid?:boolean;
 
 }
 export const Button = styled.button<buttonInterface>`
@@ -18,8 +19,11 @@ padding:${props=>props.px ? props.px :'0.6rem'} ${({py})=>py ? py :'1.5rem'} ;
   border-radius:${({radius})=>radius ? radius:"8px"};
   color:${({color})=>getColorFromString(color ? color:"text-color")};
   font-size:${({size})=>size ? size:'1rem'};
+  opacity:${({valid})=>valid ? '1':'0.4'};
+  pointer-events${({valid})=>valid ? 'all':'none'};
    border:${({border})=>border ? border:'none'};
    transition:all 0.3s ease;
+
   &:active{
     opacity:0.8;
   }
