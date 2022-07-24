@@ -12,6 +12,7 @@ const Login :React.FC = ()=>{
 
   const naviate = useNavigate()
   useEffect(()=>{
+    console.log("logind in ",isLoading)
     if(isLogged){
       naviate('/')
     }
@@ -24,8 +25,8 @@ const Login :React.FC = ()=>{
   }
   const submitHandler = (e:FormEvent)=>{
     e.preventDefault()
-    if(username.trim().length<=4)return 
-    if(password.trim().length<=7)return
+    if(username.trim().length<=2)return 
+    if(password.trim().length<=2)return
     login(username,password)
   }
   return <LoginPage>

@@ -21,12 +21,26 @@ initState ={
     login:()=>{},
     logout:()=>{},
 }
+const userDecoder = (access:string|null ) => {
+    if(!access)return null
+    let decoded_data:{username:string,id:string} = jwtDecode(access)
+    let user ={
+        username:decoded_data.username,
+        id:decoded_data.id
+    }
+    return user
+} 
+let access = localStorage.getItem("access")
+let refresh = localStorage.getItem("refresh")
+let storedTokens = (access && refresh) ? {
+    access,
+    refresh,
+}:null
 export const AuthContext = createContext(initState)
-
 export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
-    const [tokens,setTokens] = useState<string|null>(null)
-    const [isLogged,setIsLogged] = useState(false)
-    const [user,setUser]= useState<User|null>(null)
+    const [tokens,setTokens] = useState(storedTokens)
+    const [isLogged,setIsLogged] = useState(storedTokens ? true:false)
+    const [user,setUser]= useState<User|null>(userDecoder(access))
     const [error,setError] = useState<string|null>(null)
     const [isLoading,setIsLoading]=useState(false)
     const login  = async (username:string,password:string)=>{
@@ -46,12 +60,10 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
             throw new Error("there is a problem ")
         }
         const data = await response.json()
-        console.log("00000000000")
-        console.log(data)
         let decoded_data:{
             username:string,
             user_id:string,
-        } = jwtDecode(data)
+        } = jwtDecode(data.access)
         let user_={
             username:decoded_data.username,
             id:decoded_data.user_id,
@@ -59,7 +71,8 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         setUser(user_)
         setTokens(data)
         setIsLogged(true)
-        console.log("00000000000")
+        localStorage.setItem("access",data.access)
+        localStorage.setItem("refresh",data.refresh)
         }catch(err){
             console.log(err)
             console.log("response")
@@ -73,6 +86,10 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
     const logout = ()=>{
         setIsLogged(false)
         setTokens(null)
+        setUser(null)
+        setError(null)
+        localStorage.removeItem("access")
+        localStorage.removeItem("refresh")
     }
 
 
