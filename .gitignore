@@ -8,7 +8,8 @@ media
 backend/media
 # Backup files # 
 *.bak 
-
+*.zip
+backend.zip
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
