@@ -1,4 +1,3 @@
-from click import command
 from rest_framework import serializers
 from .models import Post,Comment,Image
 
