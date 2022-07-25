@@ -10,15 +10,24 @@ User = get_user_model()
 class Post(models.Model):
     title = models.CharField(max_length=250)
     author = models.ForeignKey(User,related_name='posts',on_delete=models.CASCADE)
+    @property
+    def author_username(self):
+        return self.author.username
     body = models.TextField()
     slug = models.SlugField(max_length=350,null=True,blank=True,unique=True)
     likes = models.ManyToManyField(User,related_name='liked_posts',blank=True,null=True)
     created  = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+    
 
     class Meta:
         ordering = ('-created',)
 
+    def get_images(self):
+        return self.post_images.all()
+    def get_comments(self):
+        return self.post_comments.all()
     def save(self,*args,**kwargs):
         title_=self.title
         safe = False
@@ -33,9 +42,9 @@ class Post(models.Model):
     def get_total_likes(self)->int:
         return self.likes.count()
     def get_total_comments(self)->int:
-        return self.comments.count()
+        return self.post_comments.count()
     def get_total_images(self)->int:
-        return self.images.count()
+        return self.post_images.count()
 
     def __str__(self) -> str:
         return self.title
@@ -44,8 +53,8 @@ def image_path_namer(instance,filename):
     name = instance.author.username+"/"+filename
     return name
 class Image(models.Model):
-    author = models.ForeignKey(User,related_name='post_images',on_delete=models.CASCADE)
-    post = models.ForeignKey(Post,related_name='images',on_delete=models.CASCADE)
+    author = models.ForeignKey(User,related_name='user_post_images',on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,related_name='post_images',on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_path_namer)
     created  = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -64,8 +73,8 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ('-created',)
-    def get_total_replays(self)->int:
-        return self.replays.count()
+    def get_total_replies(self)->int:
+        return self.replies.count()
     def get_total_likes(self)->int:
         return self.likes.count()
 
