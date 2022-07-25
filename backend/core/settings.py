@@ -30,12 +30,12 @@ INSTALLED_APPS = [
 
     #locals
     'users.apps.UsersConfig',
+    'posts.apps.PostsConfig',
     #3d party
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
 ]
-CORS_ALLOW_ALL_ORIGINS=True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -133,7 +133,6 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
-
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
@@ -158,3 +157,6 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+CORS_ALLOWED_ORIGINS=['http://127.0.0.1:8000','http://127.0.0.1:3000']
+#CORS_ALLOW_ALL_ORIGINS=True
