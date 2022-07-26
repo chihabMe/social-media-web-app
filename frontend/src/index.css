@@ -12,8 +12,19 @@ code {
     monospace;
 }
 
+@media screen and (max-width:450px) {
+  html,body{
+    font-size: 8px;
+  }
+  
+}
 
-
+@media screen and (max-width:650px) {
+  html,body{
+    font-size: 8px;
+  }
+  
+}
 /*spinner*/
 .lds-roller {
   display: inline-block;

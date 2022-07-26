@@ -1,4 +1,4 @@
-import React, {useState,createContext} from 'react'
+import React, {useState,useEffect,createContext} from 'react'
 import jwtDecode from 'jwt-decode';
 import { baseApiUrl } from '../utils/globals';
 import User from '../models/User';
@@ -10,6 +10,7 @@ let initState:{
     error:string|null,
     login:(username:string,password:string)=>void,
     logout:()=>void,
+    tokens:any,
 
 
 }
@@ -20,6 +21,7 @@ initState ={
     error:null,
     login:()=>{},
     logout:()=>{},
+    tokens:null,
 }
 const userDecoder = (access:string|null ) => {
     if(!access)return null
@@ -75,6 +77,8 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         localStorage.setItem("refresh",data.refresh)
         }catch(err){
             setError("problem")
+            setIsLogged(false)
+            setTokens(null)
         }
         setIsLoading(false)
 
@@ -89,6 +93,31 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         localStorage.removeItem("access")
         localStorage.removeItem("refresh")
     }
+    useEffect(()=>{
+        if(isLogged){
+            console.log("refresh----------------------")
+            console.log(tokens)
+
+        let timeout  = setTimeout(()=>{
+            fetch(`${baseApiUrl}/users/token/refresh/`,{
+                method:"post",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({refresh:tokens?.refresh})
+            }).then(res=>res.json()).then(data=>{
+            if(data.access){
+            localStorage.setItem("access",data.access)
+            localStorage.setItem("refresh",data.refresh)
+            setTokens({access:data.access,refresh:data.refresh})
+            }else{
+                console.log("token error ",data)
+            }
+            })
+        },3000)
+        return ()=>{clearTimeout(timeout)}
+        }
+    },[tokens])
 
     let value={
         isLogged,
@@ -97,8 +126,10 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         error,
         login,
         logout,
+        tokens,
 
     }
+    
     return <AuthContext.Provider value={value}>
             {props.children}
 

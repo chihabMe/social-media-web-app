@@ -1,15 +1,27 @@
 import React from 'react'
-import { useContext } from 'react';
+import { useContext,useEffect } from 'react';
 import { AuthContext } from '../../context/auth-context';
+import { baseApiUrl } from '../../utils/globals';
+import useFetch from '../../hooks/use-fetch';
+import { HomeContainer } from './styles/HomeStyles';
+import HomeLeftSide from './home-left';
+import HomeRightSide from './home-right';
+import HomeCenter from './home-center';
 
 const Home = () => {
     const {user,logout} = useContext(AuthContext)
+    const {isLoading,data,request}= useFetch();
+    useEffect(()=>{
+
+    request(`${baseApiUrl}/posts/`,'get')
+    },[])
+    console.log(data)
   return (
-    <div>
-        <h1>{user?.username}</h1>
-        <h1>{user?.id}</h1>
-        <button onClick={logout}>logout</button>
-    </div>
+    <HomeContainer>
+      <HomeLeftSide/>
+      <HomeCenter/>
+      <HomeRightSide/>
+    </HomeContainer>
   )
 }
 
