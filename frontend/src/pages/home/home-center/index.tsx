@@ -1,9 +1,12 @@
 import React from 'react'
+import PostAdd from './post-add';
 import { HomeCenterContainer } from './styles';
 
 const HomeCenter = () => {
   return (
-    <HomeCenterContainer></HomeCenterContainer>
+    <HomeCenterContainer>
+        <PostAdd/>
+    </HomeCenterContainer>
   )
 }
 
