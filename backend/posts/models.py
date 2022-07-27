@@ -24,6 +24,12 @@ class Post(models.Model):
     class Meta:
         ordering = ('-created',)
 
+    def get_author_avatar(self):
+        return self.author.profile.get_absolute_avatar_url()
+    def get_image(self):
+        if self.post_images.count()>=1:
+            return self.post_images.all().first().image.url
+        return None
     def get_images(self):
         return self.post_images.all()
     def get_comments(self):

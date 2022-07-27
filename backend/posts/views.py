@@ -11,7 +11,7 @@ from .models import Post,Comment,Image
 def posts_list(request):
     if request.method=='GET':
         data = Post.objects.all()
-        serializer = PostSerializer(data,many=True)
+        serializer = PostSerializer(data,many=True,context={"request":request})
         return Response(serializer.data,status=status.HTTP_200_OK)
     elif request.method=='POST':
         serializer = PostSerializer(data=request.data)

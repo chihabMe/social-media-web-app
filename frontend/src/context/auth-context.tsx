@@ -111,6 +111,8 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
             localStorage.setItem("refresh",data.refresh)
             setTokens({access:data.access,refresh:data.refresh})
             }else{
+                localStorage.removeItem("refresh")
+                localStorage.removeItem("access")
                 console.log("token error ",data)
             }
             })

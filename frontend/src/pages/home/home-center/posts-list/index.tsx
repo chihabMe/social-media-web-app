@@ -7,7 +7,7 @@ import { baseApiUrl } from "../../../../utils/globals";
 type post ={
   body:string,
   image:string,
-  userAvatar:string,
+  avatar_image:string,
   author:string,
   created:string,
   updated:string,
@@ -42,7 +42,7 @@ const PostList = () => {
 
       <PostItem
         key={post.id}
-        avatar={post.userAvatar}
+        avatar={post.avatar_image}
         image={post.image}
         userUsername={post.author}
         comments={post.comments}
