@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import { primaryColor, textColor } from '../../../styles/colors'
+import { md } from '../../../styles/sizes'
 
 export const HomeRightSideContainer = styled.div`
 flex:0.2;
@@ -10,6 +11,12 @@ padding-top: 3rem ;
 padding-left: 1rem;
 padding-right: 1rem;
 align-items: flex-start;
+
+    @media screen and (max-width: ${md}){
+        display: none;
+
+        
+    }
 `
 export const RightSideSearch = styled.form`
     display: flex;

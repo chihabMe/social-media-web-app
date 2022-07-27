@@ -26,8 +26,9 @@ export const PostAddText = styled.textarea`
     width: 100%;
     height: 4rem;
     border-radius: 6px;
-    padding: 0.5rem;
+    padding: 1rem;
     outline: none;
+    font-weight:500;
     font-size: 1.4rem;
     border: none;
     background-color: #cfe7de;

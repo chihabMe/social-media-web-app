@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { primaryColor, textColor } from "../../../styles/colors";
+import { md } from "../../../styles/sizes";
 
 export const HomeLeftSideContainer  = styled.div`
     flex:0.2;
@@ -7,6 +8,11 @@ export const HomeLeftSideContainer  = styled.div`
     flex-direction: column;
     gap:2rem;
     padding-top    :5rem ;
+    @media screen and (max-width: ${md}){
+        display: none;
+
+        
+    }
 `
 
 export const LeftSideList = styled.div`

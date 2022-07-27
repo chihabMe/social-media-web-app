@@ -4,7 +4,7 @@ import { PostFileAddContainer, PostFileAddTitle } from './styles'
 const PostAddFile:React.FC<{Icon?:any,text?:string}> = ({text,Icon}) => {
   return (
     <PostFileAddContainer>
-        <Icon style={{width:"2rem",height:"2rem",color:"gray"}}/>
+        <Icon style={{width:"3rem",height:"3rem",color:"gray"}}/>
         <PostFileAddTitle>{text}</PostFileAddTitle>
     </PostFileAddContainer>
   )

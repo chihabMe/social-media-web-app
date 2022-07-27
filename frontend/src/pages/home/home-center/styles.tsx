@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { md } from "../../../styles/sizes";
 
 export const HomeCenterContainer = styled.div`
     flex:0.6;
@@ -6,4 +7,10 @@ export const HomeCenterContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items:center ;
+
+    @media screen and (max-width: ${md}){
+        flex:1
+
+        
+    }
 `
