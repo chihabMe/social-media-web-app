@@ -2,9 +2,12 @@ from rest_framework import serializers
 from .models import Post,Comment,Image
 
 class PostSerializer(serializers.ModelSerializer):
+    likes = serializers.CharField(source='get_total_likes',read_only=True)
+    comments = serializers.CharField(source='get_total_comments',read_only=True)
+    author = serializers.CharField(source='author_username',read_only=True)
     class Meta:
         model = Post
-        fields=('title','body','author_username','id','created','updated','slug','get_total_likes','get_total_comments')
+        fields=('title','body','author','id','created','updated','slug','likes','comments')
     
     def create(self, validated_data,commit=True):
         post  = Post(**validated_data)
