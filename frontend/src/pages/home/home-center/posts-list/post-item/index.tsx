@@ -14,7 +14,12 @@ type resProps = {
     tags?:string[],
 }
 const PostItem:React.FC<resProps> = ({avatar,tags,image,body,userUsername,comments,likes}) => {
-  let minBody = body?.split(" ").slice(1,20).join(" ")+" ..."
+  let minBody:string|string[] = body?.split(" ")
+  if(minBody.length>=30){
+    console.log(minBody)
+    minBody=minBody.slice(1,2)
+  }
+  minBody=minBody.join(" ")
   return (
     <PostItemContainer>
       {image && <PostItemTop image={image}/>}

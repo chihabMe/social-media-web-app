@@ -4,7 +4,7 @@ import { LeftSideSectionTitle ,LeftSideSectionContainer, LeftSideSectionImage} f
 const LeftSideSection:React.FC<{title:string,Icon?:any,Image?:any}> = ({title,Image,Icon}) => {
   return (
     <LeftSideSectionContainer>
-                {Icon && <Icon style={{color:"gray",width:"3rem",height:"3rem"}}   />}
+                {Icon && <Icon style={{color:"gray",width:"2.5rem",height:"2.5rem"}}   />}
                 {Image && <LeftSideSectionImage src={Image}/>}
 
                 <LeftSideSectionTitle>{title}</LeftSideSectionTitle>

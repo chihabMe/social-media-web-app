@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { primaryColor, textColor } from '../../../styles/colors'
+import { backgroundColor, primaryColor, textColor } from '../../../styles/colors'
 import { md } from '../../../styles/sizes'
 
 export const HomeRightSideContainer = styled.div`
@@ -26,7 +26,7 @@ export const RightSideSearchInput = styled.input`
     outline: none;
     font-size: 1.2rem;
     font-weight: bold;
-    min-height: 3rem;
+    min-height: 3.5rem;
     width: 100%;
     text-transform: capitalize;
     color: ${textColor};
@@ -40,6 +40,10 @@ export const RightSideTitle = styled.h2`
 `
 
 export const FriendsListContainer = styled.ul`
+    background-color: ${backgroundColor};
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    max-width: 200px;
     width:100%;
     display: flex;
     flex-direction: column;

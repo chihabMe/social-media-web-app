@@ -15,7 +15,7 @@ const HomeLeftSide = () => {
             <LeftSideSection Icon={HiPhotograph}  title='Photos'/>
             <LeftSideSection Icon={HiVideoCamera}  title='Videos'/>
         </LeftSideList>
-        <LeftSideTitle>Group</LeftSideTitle>
+        <LeftSideTitle>Groups</LeftSideTitle>
         <LeftSideList>
             <LeftSideSection Image="https://picsum.photos/50/50" title='programing '/>
             <LeftSideSection Image="https://picsum.photos/50/50" title='java '/>

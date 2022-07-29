@@ -8,7 +8,6 @@ const HomeRightSide = () => {
         <RightSideSearch>
             <RightSideSearchInput placeholder='search ...'></RightSideSearchInput>
         </RightSideSearch>
-        <RightSideTitle>Friends</RightSideTitle>
         <FriendList/>
     </HomeRightSideContainer>
   )

@@ -1,26 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PostItem from "./post-item";
-import { PostListContainer } from "./styles";
+import { LoadingWrapper, PostListContainer } from "./styles";
 import useFetch from "../../../../hooks/use-fetch";
 import { useEffect } from "react";
 import { baseApiUrl } from "../../../../utils/globals";
-type post ={
-  body:string,
-  image:string,
-  avatar_image:string,
-  author:string,
-  created:string,
-  updated:string,
-  user:number,
-  id:number,
-  likes:number,
-  comments:number,
-  tags?:string[],
 
-}
+import { FadeLoader } from "react-spinners";
+import { primaryColor } from "../../../../styles/colors";
+import {post} from '../../../../models/post'
+import { PostContext } from "../../../../context/posts-context";
 
 const PostList = () => {
-  const [posts,setPosts]= useState<post[]|null>(null)
+  const {posts,addPosts} = useContext(PostContext)
   const {isLoading,errors,request,data} = useFetch()
   useEffect(()=>{
     let post_endpoint="/posts/";
@@ -28,20 +19,21 @@ const PostList = () => {
     request(full_endpoint,"get")
   },[])
   useEffect(()=>{
-    setPosts(data)
     console.log("res",data)
+    addPosts(data)
   },[data])
 
   return (
     <PostListContainer>
-      {isLoading && <h1>loading</h1>}
+      
+      {isLoading && <LoadingWrapper><FadeLoader color={primaryColor} /></LoadingWrapper>} 
       {errors && <h1>error</h1>}
       {
         posts?.map(post=>{
           return(
 
       <PostItem
-        key={post.id}
+        key={"post"+post.id}
         avatar={post.avatar_image}
         image={post.image}
         userUsername={post.author}

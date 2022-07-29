@@ -14,7 +14,7 @@ const [search,setSearch]= useState("")
 
   }
   return (
-            <SearchContainer>
+            <SearchContainer className={isSearching ? "active":""}>
           <SearchForm onSubmit={searchSubmitHandler}>
           <SearchInput onBlur={()=>{setIsSearching(false)}} onFocus={()=>{setIsSearching(true)}} placeholder='search ...' value={search} onChange={searchChangeHandler}  />
           <SearchButton type='submit'>

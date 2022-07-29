@@ -1,13 +1,13 @@
 import styled from "styled-components/macro";
-import { primaryColor, textColor } from "../../../styles/colors";
+import { backgroundColor, primaryColor, textColor } from "../../../styles/colors";
 
 
  export const HeaderContainer = styled.div`
     width:100%;
     display:flex;
     padding:2rem 5rem;
-    background-color: white;
     justify-content: space-between;
+    background-color: ${backgroundColor};
 ` 
 export const Panel = styled.div`
     display: flex;
@@ -38,6 +38,13 @@ export  const SearchContainer = styled.div`
     width:100%;
     max-width: 35rem;
     display: flex;
+    background-color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    &.active{
+        box-shadow: 0 0 2px 1px ${primaryColor};
+
+    }
  `
  export const SearchForm = styled.form`
     height: 3.5rem;
@@ -51,14 +58,17 @@ export  const SearchContainer = styled.div`
  `
  export const  SearchInput = styled.input`
  height: 100%;
- color: ${textColor};
+ color: ${primaryColor};
  width:100%;
  min-height: 3rem;
  border:none;
  outline: none;
  padding-left: 2rem;
  font-size: 1.3rem;
+ background-color: transparent;
  font-weight: bold;
+ 
+
     
  `
  export const UserAccountUsername = styled.h2`

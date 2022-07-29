@@ -48,7 +48,7 @@ const Login :React.FC = ()=>{
             <Input valid={validPassword} setValid={setValidPassword} value={password} setValue={setPassword} validator={globalValidator} errorMessage={"your password isn't strong enough "}   placeholder="password" type={'password'} />
           </FormController>
                 <Button valid={valid} px="1rem" size='1.5rem' color='white' background='primary'>
-                  {isLoading && <FadeLoader  height={15} color="white"/>}
+                  {isLoading && <FadeLoader  style={{width:"1rem",height:"1rem"}} color="white"/>}
                   {!isLoading && 'login'}
                 </Button>
                 {error && <h1>please try again</h1>}

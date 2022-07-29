@@ -14,7 +14,7 @@ def posts_list(request):
         serializer = PostSerializer(data,many=True,context={"request":request})
         return Response(serializer.data,status=status.HTTP_200_OK)
     elif request.method=='POST':
-        serializer = PostSerializer(data=request.data)
+        serializer = PostSerializer(data=request.data,context={"request":request})
         if serializer.is_valid():
             serializer.validated_data['author_id']=request.user.id
             serializer.save()

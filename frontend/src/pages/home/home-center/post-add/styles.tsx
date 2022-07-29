@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { textColor } from "../../../../styles/colors";
+import { backgroundColor, primaryColor, textColor } from "../../../../styles/colors";
 
 export const PostAddContainer = styled.div`
     width:100%;
-
-    max-width: 40rem;
+    border-radius: 10px;
+    background-color: ${backgroundColor};
+    padding:2rem 3rem;
+    max-width: 53rem;
     display: flex;
     flex-direction: column;
     gap:2rem;
@@ -24,14 +26,16 @@ export const PostAddAvatar = styled.img`
 export const PostAddText = styled.textarea`
     resize: none;
     width: 100%;
-    height: 4rem;
-    border-radius: 6px;
+    height: 5rem;
+    border-radius: 10px;
     padding: 1rem;
     outline: none;
     font-weight:500;
     font-size: 1.4rem;
     border: none;
-    background-color: #cfe7de;
+    background-color: black;
+    color: ${textColor};
+
 `
 export const PostAddFormController = styled.div`
     width: 100%;
@@ -39,12 +43,27 @@ export const PostAddFormController = styled.div`
     justify-content: flex-end;
     gap:2rem;
 `
-export const PostFileAddContainer = styled.div`
+export const PostFileAddContainer = styled.label`
     cursor: pointer;
     display: flex;
-    gap:1rem;
+    width:100%;
+    justify-content: space-around;
     align-items: center;
+    transition: all 0.3s ease;
+    padding:.4rem;
+    border-radius: 5px;
+    &:hover{
+        background-color: ${primaryColor};
+        opacity: 0.8;
+        h3,svg{
+            color:white !important;
+        }
+    }
+
     
+`
+export const FileUpload= styled.input`
+    display: none;
 `
 export const PostFileAddTitle = styled.h3`
 color: ${textColor};

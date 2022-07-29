@@ -1,14 +1,35 @@
-import styled from "styled-components";
-import { primaryColor, textColor } from "../../../../../styles/colors";
+import styled,{keyframes} from "styled-components";
+import { backgroundColor, primaryColor, textColor } from "../../../../../styles/colors";
 import { md, sm } from "../../../../../styles/sizes";  
 
-export const PostItemContainer = styled.div`
+const showOnAnimation = keyframes`
+    0%{
+        opacity: 0;
+        transform: scale(0);
+        border-radius: 50%;
+    }
+    100%{
+        border-radius: 10px;
+        opacity: 1;
+        transform: scale(1);
+    }
+`
+export const PostItemContainer = styled.a`
+    cursor: pointer;
     width:45%;
     max-height:50rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: ${backgroundColor};
     display: flex;
     flex-direction: column;
     gap:1rem;
     border-radius: 15px;
+    transition: all 0.2s linear;
+    animation: ${showOnAnimation} 0.3s ease;
+    &:hover{
+        box-shadow: 0 0 5px 1px ${primaryColor};
+    }
     @media screen and (max-width:${sm}) {
         width: 100%;
         
@@ -17,7 +38,7 @@ export const PostItemContainer = styled.div`
 export const PostItemImage = styled.img`
     width:100%;
     border-radius: 15px;
-    height: 50%;
+    height: 60%;
     min-height: 4rem;
 `
 export const PostItemCenterContainer = styled.div`
@@ -39,14 +60,14 @@ export const PostIconText = styled.span`
     font-size:1.2rem;
 `
 export const UserAvatar = styled.img`
-    width:3rem;
-    height:3rem;
+    width:4rem;
+    height:4rem;
     border-radius: 50%;
 `
 export const UserUserName = styled.h3`
     font-weight: bold;
     color: ${textColor};
-    font-size:1.3rem;
+    font-size:1.5rem;
 
 `
 export const PostCenterRight = styled.div`

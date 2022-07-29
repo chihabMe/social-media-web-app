@@ -1,6 +1,5 @@
-import styled from 'styled-components/macro';
+import styled,{createGlobalStyle} from 'styled-components/macro';
 import { textColor,primaryColor } from './colors';
-
 
 export const Form = styled.form`
     width:100%;

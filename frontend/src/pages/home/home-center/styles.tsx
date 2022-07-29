@@ -6,6 +6,7 @@ export const HomeCenterContainer = styled.div`
    padding-top: 5rem;
    display: flex;
    flex-direction: column;
+   gap:4rem;
    align-items:center ;
 
     @media screen and (max-width: ${md}){

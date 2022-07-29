@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField(null=True,blank=True,max_length=250)
     author = models.ForeignKey(User,related_name='posts',on_delete=models.CASCADE)
     @property
     def author_username(self):
@@ -35,6 +35,9 @@ class Post(models.Model):
     def get_comments(self):
         return self.post_comments.all()
     def save(self,*args,**kwargs):
+        self.title = self.body
+        if len(self.title)>=30:
+            self.title=self.title[0,29]
         title_=self.title
         safe = False
         while not safe:

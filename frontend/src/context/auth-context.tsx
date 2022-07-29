@@ -116,7 +116,7 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
                 console.log("token error ",data)
             }
             })
-        },3000)
+        },30000)
         return ()=>{clearTimeout(timeout)}
         }
     },[tokens])

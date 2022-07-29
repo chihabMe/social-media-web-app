@@ -6,4 +6,12 @@ export const PostListContainer = styled.div`
     flex-wrap: wrap;
     gap:1rem;
     padding: 4rem 2rem;
+    border-radius: 10px;
+`
+export const LoadingWrapper = styled.div`
+    width:100%;
+    min-height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
