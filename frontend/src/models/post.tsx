@@ -3,6 +3,7 @@
 export type post ={
   body:string,
   image:string,
+  slug:string,
   avatar_image:string,
   author:string,
   created:string,

@@ -22,7 +22,7 @@ const PostItem:React.FC<resProps> = ({avatar,slug,tags,image,body,userUsername,c
   }
   minBody=minBody.join(" ")
   return (
-    <PostItemContainer href={slug}>
+    <PostItemContainer  to={`post/${slug}`}>
       {image && <PostItemTop image={image}/>}
       <PostItemCenter userUserName={userUsername} comments={comments} likes={likes} userAvatar={avatar} />
       <PostItemBottom body={minBody} tags={tags}/>

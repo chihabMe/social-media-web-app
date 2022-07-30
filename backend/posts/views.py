@@ -27,7 +27,7 @@ def posts_list(request,format=None):
 def post_details(request,slug):
     post = get_object_or_404(Post,slug=slug)
     if request.method=='GET':
-        serializer = PostSerializer(post)
+        serializer = PostSerializer(post,context={"request":request})
         return Response(serializer.data,status=status.HTTP_200_OK)
     
     elif request.method=='DELETE':

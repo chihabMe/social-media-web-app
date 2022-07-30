@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import styled,{keyframes} from "styled-components";
 import { backgroundColor, primaryColor, textColor } from "../../../../../styles/colors";
 import { md, sm } from "../../../../../styles/sizes";  
@@ -14,7 +15,7 @@ const showOnAnimation = keyframes`
         transform: scale(1);
     }
 `
-export const PostItemContainer = styled.a`
+export const PostItemContainer = styled(Link)`
     cursor: pointer;
     width:45%;
     max-height:50rem;
