@@ -16,9 +16,11 @@ const useFetch = ()=>{
     const [isLoading,setIsLoading] = useState(false)
 
     const request = async (url:string,method:string,contentType?:string,body?:string|any)=>{
-      if(!contentType){
+      if(contentType){
         contentType="application/json"
       }
+     
+      
       console.log("requesting --------------------------")
         console.log(body)
       console.log("--------------------------")
@@ -27,8 +29,7 @@ const useFetch = ()=>{
         let config = {
             method,
             headers:{
-                "Content-Type":contentType,
-                "Authorization":`Bearer ${accessToken}`
+                "Authorization":`Bearer ${accessToken}`,
             },
             body
         }

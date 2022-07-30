@@ -31,7 +31,7 @@ const PostAdd: React.FC = () => {
     console.log('000000000000000000')
     console.log(postState)
     console.log()
-    request(full_url, "post","multipart/form-data", formData);
+    request(full_url, "post",undefined, formData);
   };
   useEffect(() => {
     addPost(data);

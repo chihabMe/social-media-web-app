@@ -27,16 +27,11 @@ class PostSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         request = self.context.get('request')
-        print("data-----------------")
-        print(request.data)
-        print("validated data-----------------")
-        print(validated_data)
-        print("-----------------")
         post  = Post(**validated_data)
         post.save()
         image = Image(post=post,author=request.user,image=request.data.get('image'))
         image.save()
-        return post  
+        return post
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get("title",instance.title)

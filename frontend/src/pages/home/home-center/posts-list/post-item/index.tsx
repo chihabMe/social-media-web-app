@@ -7,13 +7,14 @@ import { PostItemContainer } from './styles';
 type resProps = {
     avatar:string,
     image?:string,
+    slug:string,
     body:string,
     userUsername:string,
     comments:number,
     likes:number,
     tags?:string[],
 }
-const PostItem:React.FC<resProps> = ({avatar,tags,image,body,userUsername,comments,likes}) => {
+const PostItem:React.FC<resProps> = ({avatar,slug,tags,image,body,userUsername,comments,likes}) => {
   let minBody:string|string[] = body?.split(" ")
   if(minBody.length>=30){
     console.log(minBody)
@@ -21,7 +22,7 @@ const PostItem:React.FC<resProps> = ({avatar,tags,image,body,userUsername,commen
   }
   minBody=minBody.join(" ")
   return (
-    <PostItemContainer>
+    <PostItemContainer href={slug}>
       {image && <PostItemTop image={image}/>}
       <PostItemCenter userUserName={userUsername} comments={comments} likes={likes} userAvatar={avatar} />
       <PostItemBottom body={minBody} tags={tags}/>

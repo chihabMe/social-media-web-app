@@ -35,6 +35,7 @@ const PostList = () => {
 
       <PostItem
         key={"post"+post.id}
+        slug={post.slug}
         avatar={post.avatar_image}
         image={post.image}
         userUsername={post.author}
