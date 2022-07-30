@@ -12,6 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields=('title','body','image','author','avatar_image','id','avatar','created','updated','slug','likes','comments')
+        
     
     def get_image(self,post):
         image = post.get_image()
@@ -20,20 +21,26 @@ class PostSerializer(serializers.ModelSerializer):
             return request.build_absolute_uri(image)
         return None
     def get_avatar_image(self,post):
-        print(self.context)
         request  = self.context.get("request")
         avatar_full_url = request.build_absolute_uri(post.get_author_avatar())
         return avatar_full_url
     
     def create(self, validated_data):
+        request = self.context.get('request')
+        print("data-----------------")
+        print(request.data)
+        print("validated data-----------------")
+        print(validated_data)
+        print("-----------------")
         post  = Post(**validated_data)
         post.save()
+        image = Image(post=post,author=request.user,image=request.data.get('image'))
+        image.save()
         return post  
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get("title",instance.title)
         instance.body = validated_data.get("body",instance.body)
-
         instance.save()
 
         return instance

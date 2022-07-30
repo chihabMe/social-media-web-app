@@ -14,7 +14,7 @@ const HeaderPanelIcon:React.FC<{children?:any,Icon:React.FC,active?:boolean,clic
     }
   return (
      <HeaderPanelIconContainer onClick={extendHandler}>
-        <Icon/>
+        <Icon  />
         <ActiveDot className={isActive ? "active":""}/>
         {children}
      </HeaderPanelIconContainer>

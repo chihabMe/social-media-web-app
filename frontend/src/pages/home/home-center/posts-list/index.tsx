@@ -14,6 +14,7 @@ const PostList = () => {
   const {posts,addPosts} = useContext(PostContext)
   const {isLoading,errors,request,data} = useFetch()
   useEffect(()=>{
+    console.log("requesting the server for posts------------------")
     let post_endpoint="/posts/";
     let full_endpoint = baseApiUrl+post_endpoint ;
     request(full_endpoint,"get")
