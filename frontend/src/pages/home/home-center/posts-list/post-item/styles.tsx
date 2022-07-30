@@ -17,8 +17,8 @@ const showOnAnimation = keyframes`
 `
 export const PostItemContainer = styled(Link)`
     cursor: pointer;
+    text-decoration:none;
     width:45%;
-    max-height:50rem;
     padding: 1rem;
     border-radius: 10px;
     background-color: ${backgroundColor};
@@ -40,7 +40,7 @@ export const PostItemImage = styled.img`
     width:100%;
     border-radius: 15px;
     height: 60%;
-    min-height: 4rem;
+    height: 25rem;
 `
 export const PostItemCenterContainer = styled.div`
         width: 100%;
@@ -105,5 +105,6 @@ export const PostItemBottomBody = styled.p`
     font-size:1.3rem;
     font-weight: 500;
     text-align: left;
-    color:gray
+    color:${textColor};
+    height:2rem;
 `

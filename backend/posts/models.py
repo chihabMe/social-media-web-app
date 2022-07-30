@@ -36,8 +36,8 @@ class Post(models.Model):
         return self.post_comments.all()
     def save(self,*args,**kwargs):
         self.title = self.body
-        if len(self.title)>=30:
-            self.title=self.title[0,29]
+        if len(self.title)>30:
+            self.title=self.title[0:30]
         title_=self.title
         safe = False
         while not safe:

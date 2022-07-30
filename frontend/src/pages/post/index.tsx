@@ -5,31 +5,33 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import useFetch from '../../hooks/use-fetch' 
 import { baseApiUrl } from '../../utils/globals'
+import  PostLeftSide  from './PostLeftSide'
+import  PostRightSide  from './PostRightSide'
+import  PostCenter  from './PostCenter'
+import {BeatLoader } from 'react-spinners'
+import {primaryColor} from '../../styles/colors'
+import {SpinnerContainer} from './styles'
 
 const Post:React.FC = ()=>{
     let {slug} = useParams()
     const {request,data:post,isLoading,errors} = useFetch()
     let endpoint = baseApiUrl+"/posts/"+slug+"/";
     useEffect(()=>{
-        console.log("fetcging post data")
         request(endpoint,"get")
         },[])
   return <PostPageContainer>
-          
-      {isLoading && <h1>loading</h1>}
+    <PostLeftSide likes={post?.likes} comments={post?.comments} saved={0}/>      
+      {isLoading && <SpinnerContainer> <BeatLoader  color={primaryColor}/> </SpinnerContainer>}
   {!isLoading && post &&
-      <PostItem
-        key={"post"+post.id}
-        slug={post.slug}
-        avatar={post.avatar_image}
-        image={post.image}
-        userUsername={post.author}
-        comments={post.comments}
-        tags={post.tags}
-        likes={post.likes}
+      <PostCenter
         body={post.body}
+        image={post.image}
+        avatar={post.user_avatar}
+        created={post.created}
+        author_username={post.author}
       />
   }
+    <PostRightSide/>
         </PostPageContainer>
 
 }

@@ -1,6 +1,7 @@
 
-import {useState,useContext} from 'react'
+import {useState,useEffect,useContext} from 'react'
 import { AuthContext } from '../context/auth-context'
+
 
 
 let config :{
@@ -21,9 +22,6 @@ const useFetch = ()=>{
       }
      
       
-      console.log("requesting --------------------------")
-        console.log(body)
-      console.log("--------------------------")
         setIsLoading(true)
         setErrors(null)
         let config = {
