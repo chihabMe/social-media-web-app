@@ -1,7 +1,17 @@
 
 import {PostRightSideContainer,PostRow,Title,Text,PostUserAvatar,PostRightSideUserHeader,PostRightSideUser,Row} from './styles'
 import {Button} from '../../styles/Button'
-const PostRightSide:React.FC<{author_avatar:string,author_username:string}> = ({author_avatar,author_username})=>{
+const PostRightSide:React.FC<{author_avatar:string,
+  author_username:string,
+  author_email?:string,
+  author_posts:number,
+  author_location?:string}> = ({
+      author_posts,
+      author_avatar,
+      author_username,
+      author_email,
+      author_location
+      })=>{
   return <PostRightSideContainer>
             <PostRightSideUser>
             <PostRightSideUserHeader>
@@ -11,16 +21,16 @@ const PostRightSide:React.FC<{author_avatar:string,author_username:string}> = ({
             </PostRightSideUser>
               <PostRow>
                   <Title>email</Title>
-                  <Text>hidden</Text>
+                  <Text>{author_email}</Text>
               </PostRow>
               <PostRow>
                   <Title>number of posts</Title>
-                  <Text>23</Text>
+                  <Text>{author_posts}</Text>
               </PostRow>
 
               <PostRow>
                   <Title>Location</Title>
-                  <Text>algeria</Text>
+                  <Text>{author_location}</Text>
               </PostRow>
               <Button color='white' valid style={{width:'90%'}} size='1.6rem' px="1rem" background='primary'>followe</Button>
         </PostRightSideContainer>

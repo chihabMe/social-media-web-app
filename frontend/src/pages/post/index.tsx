@@ -28,12 +28,11 @@ const Post:React.FC = ()=>{
         image={post.image}
         avatar={post.user_avatar}
         author_avatar={post.avatar_image}
-        
         created={post.created}
         author_username={post.author}
       />
   }
-  { post && <PostRightSide author_username={post?.author} author_avatar={post?.avatar_image} />}
+  { post && <PostRightSide author_posts={2} author_location="algeria" author_email="chihab@email.com" author_username={post?.author} author_avatar={post?.avatar_image} />}
     </PostPageContainer>
 
 }
