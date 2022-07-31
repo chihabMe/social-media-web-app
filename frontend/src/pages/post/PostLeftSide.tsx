@@ -1,10 +1,49 @@
 import {Title,LeftPostAction,PostLeftSideContainer,Column} from './styles' 
 import {AiOutlineHeart,AiOutlineBook,AiOutlineComment} from 'react-icons/ai';
-const PostLeftSide:React.FC<{likes:number,comments:number,saved:number}> = ({likes,saved,comments})=>{
+import {primaryColor} from '../../styles/colors';
+import {AiFillHeart} from 'react-icons/ai';
+import { baseApiUrl } from '../../utils/globals';
+import { useParams } from 'react-router-dom';
+import {useEffect,useState} from 'react';
+import useFetch from '../../hooks/use-fetch';
+const PostLeftSide:React.FC<{likes:number,liked:boolean,comments:number,saved:number}> = ({liked,likes,saved,comments})=>{
+  console.log("--------------------")
+    console.log(liked)
+    console.log(likes)
+  console.log("--------------------")
+  const [liked_,setLiked]= useState(liked)
+  const [likes_,setLikes]=useState(likes)
+  const {slug }= useParams()
+    const {data,isLoading,request}= useFetch()
+  const likeHandler = ()=>{
+
+    let endpoint = baseApiUrl+"/posts/"+slug+"/like/";
+
+    request(endpoint,"post")
+  }
+  useEffect(()=>{
+      if(!data)return
+      if(data.action=='liked'){
+      setLiked(true)
+      }else{
+      setLiked(false)
+      }
+      setLikes(data.count)
+
+      },[data])
   return <PostLeftSideContainer>
-    <LeftPostAction>
-        <div><AiOutlineHeart style={{width:"3.5rem",height:"3.5rem"}} color='white'/></div>
-        <Title>{likes}</Title>
+    <LeftPostAction onClick={likeHandler}>
+        <div>
+
+        {!liked_ &&
+        <AiOutlineHeart style={{width:"3.5rem",height:"3.5rem"}} color='white'/>
+        }
+        {liked_ &&
+        <AiFillHeart style={{width:"3.5rem",height:"3.5rem"}} color={primaryColor}/>
+        }
+
+        </div>
+        <Title>{likes_}</Title>
     </LeftPostAction>
 
     <LeftPostAction>

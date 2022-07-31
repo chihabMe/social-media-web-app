@@ -23,6 +23,7 @@ initState ={
     logout:()=>{},
     tokens:null,
 }
+
 const userDecoder = (access:string|null ) => {
     if(!access)return null
     let decoded_data:{username:string,id:string} = jwtDecode(access)
@@ -38,11 +39,12 @@ let storedTokens = (access && refresh) ? {
     access,
     refresh,
 }:null
+
 export const AuthContext = createContext(initState)
 export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
     const [tokens,setTokens] = useState(storedTokens)
     const [isLogged,setIsLogged] = useState(storedTokens ? true:false)
-    const [user,setUser]= useState<User|null>(userDecoder(access))
+    const [user,setUser]= useState<User|null>(null)
     const [error,setError] = useState<string|null>(null)
     const [isLoading,setIsLoading]=useState(false)
     const login  = async (username:string,password:string)=>{
@@ -62,15 +64,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
             throw new Error("there is a problem ")
         }
         const data = await response.json()
-        let decoded_data:{
-            username:string,
-            user_id:string,
-        } = jwtDecode(data.access)
-        let user_={
-            username:decoded_data.username,
-            id:decoded_data.user_id,
-        } 
-        setUser(user_)
         setTokens(data)
         setIsLogged(true)
         localStorage.setItem("access",data.access)
@@ -85,6 +78,24 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
 
 
     }
+    useEffect(()=>{
+        let get_user = async ()=>{
+        if(!tokens)return 
+        let pre_user:{
+        username:string,
+        id:string
+        }
+          pre_user= jwtDecode(tokens.access)
+        let endpoint = baseApiUrl+"/users/"+pre_user.username+"/"
+        let resp  = await fetch(endpoint,{headers:{"Authorization":`Bearer ${tokens.access}`}});
+        let data = await resp.json()
+        console.log("getting the new user ")
+        console.log(data)
+        setUser(data)
+
+        }
+        get_user()
+        },[tokens])
     const logout = ()=>{
         setIsLogged(false)
         setTokens(null)

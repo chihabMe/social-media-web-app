@@ -6,6 +6,8 @@ import { textColor,primaryColor } from '../../styles/colors'
 export const PostPageContainer = styled.div`
 postition:relative;
 width:100%;
+padding:5rem 5rem;
+justify-content:space-between;
 display:flex;
 gap:3rem;
 `
@@ -21,33 +23,11 @@ padding-top:10rem;
 `
 export const PostCenterConitaner = styled.div`
 padding-top:5rem;
-backgrond-color:gray;
 flex:0.55;
 margin-left:15%;
 display:flex;
 flex-direction:column;
 gap:3rem;
-`
-export const PostRightSide = styled.div`
-flex:0.25;
-display:flex;
-flex-direction:column;
-align-items:center;
-`
-export const PostRightSideUser = styled.div`
-width:100%;
-max-width:20rem;
-padding:1rem;
-border-raduis:10px;
-`
-export const PostRightSideUserHeader = styled.div`
-display:flex;gap:2rem;
-align-items:center;
-`
-export const PostRow = styled.div`
-display:flex;
-flex-direction:column;
-gap:1rem;
 `
 export const PostUserAvatar = styled.img`
 width:4rem;
@@ -113,4 +93,32 @@ color:${primaryColor};
 
 }
 
+`
+
+export const PostRightSideContainer = styled.div`
+color:"white";
+flex:0.25;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:2rem;
+`
+export const PostRightSideUser = styled.div`
+width:100%;
+max-width:20rem;
+padding:1rem;
+border-raduis:10px;
+`
+export const PostRightSideUserHeader = styled.div`
+display:flex;
+gap:2rem;
+flex-direction:column;
+align-items:center;
+`
+export const PostRow = styled.div`
+text-align:left;
+width:100%;
+display:flex;
+flex-direction:column;
+gap:1.2rem;
 `

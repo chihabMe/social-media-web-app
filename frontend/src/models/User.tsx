@@ -1,11 +1,12 @@
 
 
-class User{
+type User  = {
     username:string;
     id:string;
-    constructor(username:string,id:string){
-        this.username=username;
-        this.id=id;
-    }
+    avatar:string;
+    email?:string|null;
+    followers_count:number;
+    following_count:number;
+    posts_count:number;
 }
 export default User;

@@ -20,7 +20,7 @@ const HeaderPanel = () => {
       <HeaderPanelIcon Icon={NotificationIcon} />
       <UserAccount>
         <UserAccountUsername>{user?.username}</UserAccountUsername>
-        <UserAccountAvatar src="https://picsum.photos/50/50" />
+        <UserAccountAvatar src={user?.avatar} />
         <svg
           color="gray"
           transform="rotate(90)"

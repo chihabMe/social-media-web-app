@@ -77,3 +77,17 @@ def comment_details(request,post_slug,comment_id) :
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+@api_view(["post"])
+def post_like(request,post_slug):
+    post = get_object_or_404(Post,slug=post_slug)
+    data={}
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+        data['action']='disliked'
+    else:
+        post.likes.add(request.user)
+        data['action']='liked'
+    data['count']=post.likes.count()
+    return Response(data=data,status=status.HTTP_201_CREATED)
+
+

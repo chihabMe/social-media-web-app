@@ -9,11 +9,15 @@ class PostSerializer(serializers.ModelSerializer):
     avatar  = serializers.CharField(source="get_author_avatar",read_only=True)
     avatar_image = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
+    liked = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Post
-        fields=('title','body','image','author','avatar_image','id','avatar','created','updated','slug','likes','comments')
+        fields=('title','body','image','liked','author','avatar_image','id','avatar','created','updated','slug','likes','comments')
         
     
+    def get_liked(self,post):
+        user  = self.context.get("request").user
+        return user in post.likes.all()
     def get_image(self,post):
         image = post.get_image()
         request = self.context.get("request")

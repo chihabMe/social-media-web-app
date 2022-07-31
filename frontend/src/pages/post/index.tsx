@@ -20,19 +20,21 @@ const Post:React.FC = ()=>{
         request(endpoint,"get")
         },[])
   return <PostPageContainer>
-    <PostLeftSide likes={post?.likes} comments={post?.comments} saved={0}/>      
+  {post && <PostLeftSide liked={post?.liked} likes={post?.likes} comments={post?.comments} saved={0}/>      }
       {isLoading && <SpinnerContainer> <BeatLoader  color={primaryColor}/> </SpinnerContainer>}
   {!isLoading && post &&
       <PostCenter
         body={post.body}
         image={post.image}
         avatar={post.user_avatar}
+        author_avatar={post.avatar_image}
+        
         created={post.created}
         author_username={post.author}
       />
   }
-    <PostRightSide/>
-        </PostPageContainer>
+  { post && <PostRightSide author_username={post?.author} author_avatar={post?.avatar_image} />}
+    </PostPageContainer>
 
 }
 export default Post;

@@ -16,9 +16,13 @@ class Profile(models.Model):
     blocked = models.ManyToManyField('self',blank=True,related_name='blocked_by')
 
     def get_total_followers(self):
-        return self.followers.count()
+        if self.followers:
+            return self.followers.count()
+        return 0
     def get_total_following(self):
         return self.following.count()
+    def get_total_posts(self):
+        return self.user.posts.count()
     def get_absolute_avatar_url(self):
         if self.avatar:
             return self.avatar.url
