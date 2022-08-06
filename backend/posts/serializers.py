@@ -10,11 +10,14 @@ class PostSerializer(serializers.ModelSerializer):
     avatar_image = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
     liked = serializers.SerializerMethodField(read_only=True)
+    followed = serializers.SerializerMethodField()
     class Meta:
         model = Post
-        fields=('title','body','image','liked','author','avatar_image','id','avatar','created','updated','slug','likes','comments')
+        fields=('title','body','image','liked','followed','author','avatar_image','id','avatar','created','updated','slug','likes','comments')
         
-    
+    def get_followed(self,post):
+        user = self.context.get("request").user
+        return post.author.profile in user.profile.following.all()
     def get_liked(self,post):
         user  = self.context.get("request").user
         return user in post.likes.all()

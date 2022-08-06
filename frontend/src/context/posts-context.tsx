@@ -8,8 +8,8 @@ type newPostType={
 }
 let newPostInitState:newPostType = {
     body:'',
-    image:"",
-    video:"",
+    image:null,
+    video:null,
 }
 const postReducer = (state:newPostType,action:{payload?:any,type:string})=>{
     if(action.type=="addBody"){
@@ -22,6 +22,8 @@ const postReducer = (state:newPostType,action:{payload?:any,type:string})=>{
         return {...state,video:action.payload}
     }
     if(action.type=='reset'){
+        console.log('reset')
+        console.log(newPostInitState)
         return newPostInitState 
     }
     return state

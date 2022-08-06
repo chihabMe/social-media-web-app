@@ -17,9 +17,23 @@ def get_user(request,username):
     serializer = UserSerializer(profile,context={"request":request})
     return Response(serializer.data,status=status.HTTP_200_OK)
 
+@api_view(['POST'])
+def follow_user(request,username):
+    user = get_object_or_404(User,username=username)
+    my_profile =request.user.profile
+    data={}
+    if user.profile in my_profile.following.all():
+        my_profile.following.remove(user.profile)
+        data['action']='remove'
+    else:
+        my_profile.following.add(user.profile)
+        data['action']='add'
+    return Response(data,status=status.HTTP_200_OK)
+
 
 class MyTokenObtainPairView(TokenObtainPairView):
     permission_classes=(AllowAny,)
+
     serializer_class=MyTokenObtainSerializer
 
 class MyTokenRefreshView(TokenRefreshView):

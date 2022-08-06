@@ -15,6 +15,14 @@ export const PostAddContainer = styled.div`
         color:white !important;
 
     }
+    svg{
+        width:3rem;
+        height: 3rem;
+        color:${props=>props.theme.title};
+        &.active{
+        color:${props=>props.theme.primary};
+        }
+    }
 ` 
 export const PostAddForm  = styled.form`
     width:100%;

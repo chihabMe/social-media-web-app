@@ -166,6 +166,9 @@ button{
   font-size:1.1rem;
   font-weight: bold;
   background-color: ${props=>props.theme.primary};
+  &.active{
+    background-color:${props=>props.theme.red};
+  }
 }
 `
 export const PostRightSideUserHeader = styled.div`

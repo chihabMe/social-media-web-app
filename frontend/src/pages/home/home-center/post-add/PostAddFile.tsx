@@ -30,7 +30,7 @@ const PostAddFile: React.FC<{
   return (
     <>
       <PostFileAddContainer htmlFor={name}>
-        <Icon style={{ width: "3rem", height: "3rem", color: "gray" }} />
+        <Icon  className={file?'active':''} />
         <PostFileAddTitle>{text}</PostFileAddTitle>
         {upload && (
           <FileUpload
