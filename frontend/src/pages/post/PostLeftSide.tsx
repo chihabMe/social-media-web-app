@@ -1,4 +1,4 @@
-import {Title,LeftPostAction,PostLeftSideContainer,Column} from './styles' 
+import {Title,LeftPostAction,PostLeftSideContainer,Column, StickyWrapper} from './styles' 
 import {AiOutlineHeart,AiOutlineBook,AiOutlineComment} from 'react-icons/ai';
 import {primaryColor} from '../../styles/colors';
 import {AiFillHeart} from 'react-icons/ai';
@@ -32,14 +32,16 @@ const PostLeftSide:React.FC<{likes:number,liked:boolean,comments:number,saved:nu
 
       },[data])
   return <PostLeftSideContainer>
-    <LeftPostAction onClick={likeHandler}>
+    <StickyWrapper>
+
+    <LeftPostAction className={likes_ ? "active":""}  onClick={likeHandler}>
         <div>
 
         {!liked_ &&
-        <AiOutlineHeart style={{width:"3.5rem",height:"3.5rem"}} color='white'/>
+        <AiOutlineHeart />
         }
         {liked_ &&
-        <AiFillHeart style={{width:"3.5rem",height:"3.5rem"}} color={primaryColor}/>
+        <AiFillHeart />
         }
 
         </div>
@@ -56,6 +58,7 @@ const PostLeftSide:React.FC<{likes:number,liked:boolean,comments:number,saved:nu
         <Title>{saved}</Title>
     </LeftPostAction>
 
+    </StickyWrapper>
     </PostLeftSideContainer>
 }
 export default PostLeftSide;

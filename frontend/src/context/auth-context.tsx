@@ -89,8 +89,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         let endpoint = baseApiUrl+"/users/"+pre_user.username+"/"
         let resp  = await fetch(endpoint,{headers:{"Authorization":`Bearer ${tokens.access}`}});
         let data = await resp.json()
-        console.log("getting the new user ")
-        console.log(data)
         setUser(data)
 
         }
@@ -106,8 +104,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
     }
     useEffect(()=>{
         if(isLogged){
-            console.log("refresh----------------------")
-            console.log(tokens)
 
         let timeout  = setTimeout(()=>{
             fetch(`${baseApiUrl}/users/token/refresh/`,{
@@ -124,7 +120,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
             }else{
                 localStorage.removeItem("refresh")
                 localStorage.removeItem("access")
-                console.log("token error ",data)
             }
             })
         },30000)

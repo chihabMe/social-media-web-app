@@ -17,15 +17,14 @@ type resProps = {
 const PostItem:React.FC<resProps> = ({avatar,slug,tags,image,body,userUsername,comments,likes}) => {
   let minBody:string|string[] = body?.split(" ")
   if(minBody.length>=30){
-    console.log(minBody)
     minBody=minBody.slice(1,2)
   }
   minBody=minBody.join(" ")
   return (
     <PostItemContainer  to={`post/${slug}`}>
-      {image && <PostItemTop image={image}/>}
       <PostItemCenter userUserName={userUsername} comments={comments} likes={likes} userAvatar={avatar} />
       <PostItemBottom body={minBody} tags={tags}/>
+      {image && <PostItemTop image={image}/>}
 
     </PostItemContainer>
   )

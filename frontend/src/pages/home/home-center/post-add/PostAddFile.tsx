@@ -14,18 +14,14 @@ const PostAddFile: React.FC<{
     const reader = new FileReader()
     const [currentFile,setCurrentFile]=useState(null)
   const fileChangeHandler = (e: any) => {
-    console.log("setted -----------------------------")
       if(!setFile)return
       setFile(e.target.files[0])
     //setCurrentFile(e.target.files[0])
   };
  useEffect(()=>{
-    console.log("reader -------------------------")
   if(setFile){
   //reader.readAsDataURL(currentFile)
   //reader.onload = ()=>{
-   // console.log("reader -------------------------")
-    //console.log(reader)
     //setFile(reader.result)
   //}
   }

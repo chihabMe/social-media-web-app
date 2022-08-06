@@ -1,29 +1,52 @@
-import {CommentAction,CommentActionStat,CommentFooterWrapper} from './styles'
-import { textColor,primaryColor } from '../../../styles/colors'
-import { AiFillHeart } from "react-icons/ai"
-import { AiOutlineHeart } from "react-icons/ai"
-import {useState } from 'react'
-const CommentFooter : React.FC = ()=>{
-  const [liked,setLiked]= useState(false)
-    const likeHandler = ()=>{
-    setLiked(prev=>!prev)
+import {
+  CommentAction,
+  CommentActionStat,
+  CommentFooterWrapper,
+} from "./styles";
+import { textColor, primaryColor } from "../../../styles/colors";
+import { AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import useFetch from "../../../hooks/use-fetch";
+import { useParams } from "react-router-dom";
+import { baseApiUrl } from "../../../utils/globals";
+const CommentFooter: React.FC<{
+  likes: number;
+  replies: number;
+  id: number;
+  liked: boolean;
+  showReplayToggle: () => void;
+}> = ({ id, liked, likes, showReplayToggle, replies }) => {
+  const [liked_, setLiked] = useState(liked);
+  const [likes_, setLikes] = useState(likes);
+
+  const { data, request } = useFetch();
+
+  let slug = useParams().slug;
+  const likeHandler = () => {
+    let endpoint = baseApiUrl + "/" + "posts/" + slug + "/comments/" + id + "/";
+    request(endpoint, "post", "application/json");
+    setLiked((prev) => !prev);
+  };
+  useEffect(() => {
+    if (data) {
+      setLikes(data.likes_count);
+      setLiked(data.liked);
     }
-    
-return <CommentFooterWrapper>
-          
-            <CommentAction >
-            <CommentActionStat>replay</CommentActionStat>
-            </CommentAction>
-            <CommentAction onClick={likeHandler}>
-            {liked ? 
-            <AiFillHeart style={{width:"2.5rem",height:"2.5rem"}} color={primaryColor}/>
-              :
-            <AiOutlineHeart style={{width:"2.5rem",height:"2.5rem"}} color={primaryColor}/>
-            }
-            <CommentActionStat>32</CommentActionStat>
-            </CommentAction>
+  }, [data]);
 
-      </CommentFooterWrapper>
-
-}
-export default CommentFooter
+  return (
+    <CommentFooterWrapper>
+      <CommentAction>
+        <CommentActionStat onClick={showReplayToggle}>
+          replies {replies}
+        </CommentActionStat>
+      </CommentAction>
+      <CommentAction onClick={likeHandler}>
+        {liked_ ? <AiFillHeart /> : <AiOutlineHeart color={primaryColor} />}
+        <CommentActionStat>{likes_}</CommentActionStat>
+      </CommentAction>
+    </CommentFooterWrapper>
+  );
+};
+export default CommentFooter;

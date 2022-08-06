@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
-import { backgroundColor, primaryColor, textColor } from '../../../styles/colors'
 import { md } from '../../../styles/sizes'
 
 export const HomeRightSideContainer = styled.div`
+position: relative;
 flex:0.2;
 display: flex;
 flex-direction: column;
@@ -18,8 +18,19 @@ align-items: flex-start;
         
     }
 `
+export const StickyWrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width:100%;
+position: sticky;
+top:10rem;
+    
+`
 export const RightSideSearch = styled.form`
     display: flex;
+    background-color: ${props=>props.theme.bg};
+    padding: 0.4rem 0.8rem;
 `
 export const RightSideSearchInput = styled.input`
     border: none;
@@ -29,10 +40,11 @@ export const RightSideSearchInput = styled.input`
     min-height: 3.5rem;
     width: 100%;
     text-transform: capitalize;
-    color: ${textColor};
+    background-color: transparent;
+    color: ${props=>props.theme.text};
 `
 export const RightSideTitle = styled.h2`
-    color: ${primaryColor};
+    color: ${props=>props.theme.primary};
     text-align: left;
     text-transform: capitalize;
     font-size: 1.9rem;
@@ -40,7 +52,7 @@ export const RightSideTitle = styled.h2`
 `
 
 export const FriendsListContainer = styled.ul`
-    background-color: ${backgroundColor};
+    background-color: ${props=>props.theme.bg};
     padding: 2rem 1rem;
     border-radius: 10px;
     max-width: 200px;
@@ -64,6 +76,6 @@ export const FriendAvatar = styled.img`
 `
 export const FriendUserName = styled.h3`
     font-size: 1.5rem;
-    color:${textColor}
+    color:${props=>props.theme.text}
 
 `

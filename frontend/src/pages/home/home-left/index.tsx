@@ -5,10 +5,13 @@ import {CgFeed} from 'react-icons/cg'
 import {FaUserFriends} from 'react-icons/fa'
 import {MdOutlinePhotoSizeSelectActual} from 'react-icons/md'
 import {HiVideoCamera,HiPhotograph,HiUserGroup, HiHome} from 'react-icons/hi';
+import { StickyWrapper } from '../home-right/styles';
 
 const HomeLeftSide = () => {
   return (
     <HomeLeftSideContainer>
+      <StickyWrapper>
+
         <LeftSideList>
             <LeftSideSection Icon={HiHome}  title='Main'/>
             <LeftSideSection Icon={HiUserGroup}  title='Friends'/>
@@ -22,6 +25,7 @@ const HomeLeftSide = () => {
             <LeftSideSection Image="https://picsum.photos/50/50" title='python  '/>
             <LeftSideSection Image="https://picsum.photos/50/50" title='web '/>
         </LeftSideList>
+      </StickyWrapper>
     </HomeLeftSideContainer>
   )
 }

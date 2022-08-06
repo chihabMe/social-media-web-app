@@ -12,12 +12,10 @@ let newPostInitState:newPostType = {
     video:"",
 }
 const postReducer = (state:newPostType,action:{payload?:any,type:string})=>{
-    console.log("run")
     if(action.type=="addBody"){
         return {...state,body:action.payload}
     }
     if(action.type=="addImage"){
-        console.log("ading image")
         return {...state,image:action.payload}
     }
     if(action.type=="addVideo"){
@@ -66,8 +64,6 @@ export const PostContextProvider :React.FC<{children:any}> = (props)=>{
         addPosts,
     }
     useEffect(()=>{
-        console.log("post stte")
-        console.log(postState)
     },[postState])
     return <PostContext.Provider value={value}>
             {props.children}

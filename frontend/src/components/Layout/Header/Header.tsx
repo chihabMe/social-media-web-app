@@ -8,13 +8,13 @@ import { Form } from '../../../styles/Form';
 import HeaderPanel from './HeaderPanel';
 import { HeaderLeftSide } from './HeaderLeftSide';
 
-const Header = () => {
+const Header:React.FC<{changeTheme:()=>void}> = ({changeTheme}) => {
 
   return (
     <HeaderContainer>
       <HeaderLeftSide/>
 
-       <HeaderPanel/> 
+       <HeaderPanel changeTheme={changeTheme}/> 
     </HeaderContainer>
   )
 }

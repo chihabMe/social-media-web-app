@@ -1,29 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../context/auth-context";
 import AccountIcon from "../../../styles/icons/AccountIcon";
 import MessageIcon from "../../../styles/icons/MessageIcon";
 import NotificationIcon from "../../../styles/icons/NotificationIcon";
 import HeaderPanelIcon from "./HeaderPanelIcon";
+import { ThemeContext } from "styled-components";
 import {
   Panel,
   UserAccountUsername,
   UserAccount,
   UserAccountAvatar,
+  PanelUserActions,
+  PanelUserAction,
 } from "./styles";
 
-const HeaderPanel = () => {
-  const { user } = useContext(AuthContext);
+const HeaderPanel:React.FC<{changeTheme:()=>void}> = (props) => {
+  const theme = useContext(ThemeContext)
+  const { user,logout } = useContext(AuthContext);
+  const [showAction , setShowAction]= useState(false)
+  const showActionToggle = ()=>{
+    setShowAction(prev=>!prev);
+  }
+
   return (
     <Panel>
       <HeaderPanelIcon Icon={AccountIcon} />
       <HeaderPanelIcon Icon={MessageIcon} />
       <HeaderPanelIcon Icon={NotificationIcon} />
-      <UserAccount>
-        <UserAccountUsername>{user?.username}</UserAccountUsername>
+      <UserAccount onClick={showActionToggle}>
         <UserAccountAvatar src={user?.avatar} />
+        <UserAccountUsername>{user?.username}</UserAccountUsername>
         <svg
           color="gray"
-          transform="rotate(90)"
+          transform={showAction ? "rotate(-90)":"rotate(90)"}
           width="2.5rem"
           height="2.5rem"
           xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +47,11 @@ const HeaderPanel = () => {
           />
         </svg>
       </UserAccount>
+        <PanelUserActions className={showAction ?"active":""}>
+            <PanelUserAction>profile</PanelUserAction>
+            <PanelUserAction onClick={props.changeTheme}>change to  {theme?.name=='light' ? "dark" :"light"}</PanelUserAction>
+            <PanelUserAction onClick={logout}>logout</PanelUserAction>
+          </PanelUserActions>
     </Panel>
   );
 };

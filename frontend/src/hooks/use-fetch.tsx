@@ -4,10 +4,10 @@ import { AuthContext } from '../context/auth-context'
 
 
 
-let config :{
-    method:string,
-    headers:any,
-    url:string
+type configType ={
+    method:string;
+    headers:any;
+    body:any
 }
 const useFetch = ()=>{
     let {tokens} =useContext(AuthContext)
@@ -17,20 +17,24 @@ const useFetch = ()=>{
     const [isLoading,setIsLoading] = useState(false)
 
     const request = async (url:string,method:string,contentType?:string,body?:string|any)=>{
-      if(contentType){
-        contentType="application/json"
-      }
      
       
+
         setIsLoading(true)
         setErrors(null)
-        let config = {
-            method,
-            headers:{
+        const config :configType={
+        method:method ,
+        headers:{
                 "Authorization":`Bearer ${accessToken}`,
-            },
-            body
+        },
+         body
         }
+        if(contentType){
+          config.headers["Content-Type"]=contentType
+        }
+      if(contentType){
+        config.headers["Content-Type"]=contentType
+      }
         let response = await fetch(url,config)
         try{
 

@@ -28,7 +28,7 @@ cursor: pointer;
 const ActiveDot = styled.div`
     width: 1rem;
     height: 1rem;
-    background-color: ${primaryColor};
+    background-color: ${props=>props.theme.red};
     border-radius: 50%;
     position: absolute;
     visibility: hidden;

@@ -1,30 +1,26 @@
 import styled from 'styled-components'
-import { textColor,primaryColor } from '../../styles/colors'
 
 
 
 export const PostPageContainer = styled.div`
-postition:relative;
+z-index: 1;
 width:100%;
 padding:5rem 5rem;
 justify-content:space-between;
 display:flex;
 gap:3rem;
+position: relative;
+min-height: 100vh;
 `
 export const SpinnerContainer = styled.div`
-position:absolute;
-top:20%;
-transform:translate(-35%);
-left:50%;
 display:flex;
 align-items:center;
 padding-top:10rem;
 
 `
-export const PostCenterConitaner = styled.div`
+export const PostCenterContainer = styled.div`
 padding-top:5rem;
-flex:0.55;
-margin-left:15%;
+flex:0.65;
 display:flex;
 flex-direction:column;
 gap:3rem;
@@ -32,7 +28,7 @@ gap:3rem;
 export const PostUserAvatar = styled.img`
 width:4rem;
 height:4rem;
-border-radius:50%;
+border-radius:25%;
 
 `
 export const PostCenterImage = styled.img`
@@ -49,26 +45,22 @@ export const Row = styled.div`
 width:100%;
 align-items:center;
 display:flex;
-flex-directoin:column;
 gap:1rem;
 align-items:right;
 `
 export const Title = styled.h3`
 font-weight:bold;
 text-align:left;
-font-size:1.8rem;
-color:${textColor}
+font-size:1.5rem;
+color:${props=>props.theme.text};
 `
 export const Text = styled.p`
 font-size:1.6rem;
 text-align:left;
-color:${textColor}
+color:${props=>props.theme.text};
 `
 export const PostLeftSideContainer = styled.div`
-  position:fixed;
-  height:100vh;
-  max-height:100vh;
-  flex:0.15;
+  flex:0.05;
   display:flex;
   padding:5rem 4rem;
   gap:4rem;
@@ -83,12 +75,24 @@ flex-direction:column;
 align-items:center; 
 gap:1rem;
 transition:all 0.2s linear;
+  &.active{
+    svg{
+
+    color:${props=>props.theme.primary} !important;
+    }
+
+  }
+svg{
+  width:3rem !important;
+  height:3rem !important;
+  color:${props=>props.theme.text} !important;
+}
 &:hover{
   svg{
-color:${primaryColor} !important;
+color:${props=>props.theme.primary} !important;
   }
   h3{
-color:${primaryColor};
+color:${props=>props.theme.primary} !important;
   }
 
 }
@@ -96,18 +100,40 @@ color:${primaryColor};
 `
 
 export const PostRightSideContainer = styled.div`
-color:"white";
 flex:0.25;
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:2rem;
+position: relative;
+`
+export const StickyWrapper = styled.div`
+align-items: center;
+padding:1rem;
+background-color: ${props=>props.theme.bgSoft};
+width:100%;
+display: flex;
+flex-direction: column;
+gap:1rem;
+position: sticky;
+top:9rem;
+
+  
 `
 export const PostRightSideUser = styled.div`
-width:100%;
 max-width:20rem;
 padding:1rem;
-border-raduis:10px;
+display: flex;
+flex-direction: column;
+gap:1rem;
+button{
+  padding: 1rem 2.5rem;
+  border-radius: 5px;
+  color:white;
+  font-size:1.1rem;
+  font-weight: bold;
+  background-color: ${props=>props.theme.primary};
+}
 `
 export const PostRightSideUserHeader = styled.div`
 display:flex;

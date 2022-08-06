@@ -7,9 +7,8 @@ const GlobalStyles  = createGlobalStyle`
         box-sizing: border-box;
     }
     body{
+        background-color: #F3F5F8;
         font-family: "Roboto",sans-serif;
-        background-color: #04070B;
-
     }
 `
 

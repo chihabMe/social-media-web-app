@@ -15,7 +15,6 @@ const Home = () => {
 
     request(`${baseApiUrl}/posts/`,'get')
     },[])
-    console.log(data)
   return (
     <HomeContainer>
       <HomeLeftSide/>

@@ -1,5 +1,5 @@
 import {Button} from  '../../styles/Button';
-import {FadeLoader} from 'react-spinners';
+import {BeatLoader} from 'react-spinners/';
 import {Form,FormController,Label} from '../../styles/Form';
 import {LoginTitle,LoginPage,LoginFormWrapper, GoToSignUp} from './styles';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +48,7 @@ const Login :React.FC = ()=>{
             <Input valid={validPassword} setValid={setValidPassword} value={password} setValue={setPassword} validator={globalValidator} errorMessage={"your password isn't strong enough "}   placeholder="password" type={'password'} />
           </FormController>
                 <Button valid={valid} px="1rem" size='1.5rem' color='white' background='primary'>
-                  {isLoading && <FadeLoader  style={{width:"1rem",height:"1rem"}} color="white"/>}
+                  {isLoading && < BeatLoader  size={8} color="white"/>}
                   {!isLoading && 'login'}
                 </Button>
                 {error && <h1>please try again</h1>}

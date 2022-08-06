@@ -1,27 +1,39 @@
 import styled from "styled-components";
-import { backgroundColor, primaryColor, textColor } from "../../../../styles/colors";
 
 export const PostAddContainer = styled.div`
     width:100%;
     border-radius: 10px;
-    background-color: ${backgroundColor};
+    background-color: ${props=>props.theme.bg};
     padding:2rem 3rem;
     max-width: 53rem;
     display: flex;
     flex-direction: column;
     gap:2rem;
+    button{
+        width:100%;
+        color:${props=>props.theme.bg} !important;
+        color:white !important;
+
+    }
 ` 
 export const PostAddForm  = styled.form`
     width:100%;
     display: flex;
     flex-direction: column;
     gap:2rem;
-    align-items: center;
+    align-items: flex-end;
+    button{
+        width:100%;
+        background-color: ${props=>props.theme.primary};
+        color:${props=>props.theme.bg} !important;
+        color:white !important;
+
+    }
 `
 export const PostAddAvatar = styled.img`
     width:4rem;
     height: 4rem;
-    border-radius: 50%;
+    border-radius: 25%;
 `
 export const PostAddText = styled.textarea`
     resize: none;
@@ -33,8 +45,8 @@ export const PostAddText = styled.textarea`
     font-weight:500;
     font-size: 1.4rem;
     border: none;
-    background-color: black;
-    color: ${textColor};
+    background-color: ${props=>props.theme.bgSoft};
+    color: ${props=>props.theme.text};
 
 `
 export const PostAddFormController = styled.div`
@@ -53,7 +65,7 @@ export const PostFileAddContainer = styled.label`
     padding:.4rem;
     border-radius: 5px;
     &:hover{
-        background-color: ${primaryColor};
+        background-color: ${props=>props.theme.primary};
         opacity: 0.8;
         h3,svg{
             color:white !important;
@@ -66,5 +78,5 @@ export const FileUpload= styled.input`
     display: none;
 `
 export const PostFileAddTitle = styled.h3`
-color: ${textColor};
+color: ${props=>props.theme.text};
 `
