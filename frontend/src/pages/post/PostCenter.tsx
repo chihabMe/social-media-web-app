@@ -1,5 +1,5 @@
 
-import {PostCenterContainer,Column,PostUserAvatar,Text,Title,Row,PostCenterImage} from './styles'
+import {PostCenterContainer,Column,PostUserAvatar,Text,Title,Row,PostCenterImage, Line} from './styles'
 import CommentList from '../../components/Layout/comment-list'
 import CommentAdd from '../../components/Layout/comment-add'
 import { primaryColor } from '../../styles/colors'
@@ -45,7 +45,6 @@ const PostCenter:React.FC<{body:string,author_avatar:string,author_username:stri
             <Column>
           <PostUserAvatar src={post.author_avatar}/>
             </Column>
-
             <Column>
             <Title>{post.author_username}</Title>
             <Text style={{fontSize:'1.2rem'}}>  {post.created}</Text>
@@ -56,7 +55,9 @@ const PostCenter:React.FC<{body:string,author_avatar:string,author_username:stri
             {post.body}
             </Text>
           </Row>
+          <Line/>
           <CommentAdd addComment={addComment}/>
+          <Line/>
           <CommentList comments={comments}/>
         </PostCenterContainer>
 }

@@ -12,13 +12,26 @@ import GlobalStyles from './styles/global';
 import styled, {ThemeProvider} from 'styled-components'
 import {useState} from 'react'
 import {lightTheme,darkTheme} from './utils/theme'
+let themeName = localStorage.getItem('theme')
+let initLight:boolean;
+  if(themeName){
 
+    if(themeName=='dark'){
+      initLight=false
+    }
+  }else{
+
+      initLight=true
+  }
 function App() {
   const {isLogged} = useContext(AuthContext)
-  const [light,setLight]= useState(true)
+  const [light,setLight]= useState(initLight)
   const changeTheme = ()=>{
-    setLight(prev=>!prev)
-
+    setLight(prev=>{
+      let value = !prev;
+      localStorage.setItem('theme',value?"light":'dark')
+      return value;
+    })
   }
   return (
     <ThemeProvider theme={light? lightTheme:darkTheme}>

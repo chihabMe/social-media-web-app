@@ -6,7 +6,6 @@ export const CommentListContainer = styled.div`
 width:100%;
 display:flex;
 flex-direction:column;
-gap:1.5rem;
 `
 
 export const CommentItemContainer = styled.div`
@@ -26,8 +25,8 @@ export const CommentFooterWrapper = styled.div`
 padding:1rem 2rem;
 display:flex;
 justify-content:flex-end;
-gap:1.2rem;
 align-items:center;
+gap:1.2rem;
 
 `
 export const CommentAction = styled.div`
@@ -50,7 +49,6 @@ font-size:1.4rem;
 `
 export const CommentReplayAdd = styled.form`
 display: flex;
-    width:100%;
     border-radius: 5px;
     border:none;
     padding: 1rem;;
@@ -58,6 +56,8 @@ display: flex;
     opacity: 0;
     transform: opacity 0.2s ease;
     background-color: ${props=>props.theme.bgSoft};
+    width:0;
+    height: 0;
     gap:1rem;
     button{
         background-color: ${props=>props.theme.primary};
@@ -66,11 +66,13 @@ display: flex;
         border-radius: 5px;
         font-size: 1.2rem;
         font-weight: bold;
-        padding: 0.5rem 2rem;
+        padding: 0.3rem 2rem !important;
     }
     &.active{
         visibility: visible;
         opacity: 1;
+        width:100%;
+        height: unset;
     }
     
 `

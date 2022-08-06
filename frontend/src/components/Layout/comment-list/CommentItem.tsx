@@ -4,6 +4,7 @@ import CommentBody from "./CommentBody";
 import CommentFooter from "./CommentFooter";
 import { Button } from "../../../styles/Button";
 import { useState } from "react";
+import { Line } from "../../../pages/post/styles";
 const CommentItem: React.FC<{
   body: string;
   liked: boolean;
@@ -27,6 +28,7 @@ const CommentItem: React.FC<{
           <CommentReplayInput/>
           <Button valid>replay</Button>
         </CommentReplayAdd>
+        <Line/>
     </CommentItemContainer>
   );
 };

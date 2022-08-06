@@ -10,7 +10,7 @@ type configType ={
     body:any
 }
 const useFetch = ()=>{
-    let {tokens} =useContext(AuthContext)
+    let {tokens,logout} =useContext(AuthContext)
     const [accessToken,setAccessToken]=useState<any>(tokens.access)
     const [errors,setErrors]= useState<any>(null)
     const [data,setData] = useState<any>(null)
@@ -39,6 +39,10 @@ const useFetch = ()=>{
         try{
 
         if(!response.ok){
+          if(response.status==401){
+          logout()
+          }
+          console.log(response)
             throw new Error("problem during connection")
         }
         let res_data = await response.json();

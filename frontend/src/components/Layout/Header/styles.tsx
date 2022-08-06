@@ -23,6 +23,7 @@ export const Panel = styled.div`
     }
 `
 export const PanelUserActions = styled.ul`
+box-shadow: 0 0 2px 1px  ${props=>props.theme.primary};
 display: none;
 padding:1.5rem 1rem;
 width:15rem;
@@ -126,6 +127,9 @@ export  const SearchContainer = styled.div`
 export const Logo = styled.div`
 font-size: 3rem;
 font-weight: bold;
-color: ${props=>props.theme.primary};
+a{
+
+color: ${props=>props.theme.primary} ;
+}
     
  `

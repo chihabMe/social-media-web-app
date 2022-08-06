@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mediaMd, mediaSm } from '../../styles/sizes'
 
 
 
@@ -18,12 +19,23 @@ align-items:center;
 padding-top:10rem;
 
 `
+export const Line = styled.hr`
+  border-top:1px solid ${props=>props.theme.bg};
+  opacity: 0.3;
+`
 export const PostCenterContainer = styled.div`
 padding-top:5rem;
 flex:0.65;
 display:flex;
 flex-direction:column;
 gap:3rem;
+
+  @media ${mediaMd}{
+    flex:0.7;
+  }
+  @media ${mediaSm}{
+    flex:1;
+  }
 `
 export const PostUserAvatar = styled.img`
 width:4rem;
@@ -51,6 +63,8 @@ align-items:right;
 export const Title = styled.h3`
 font-weight:bold;
 text-align:left;
+
+
 font-size:1.5rem;
 color:${props=>props.theme.text};
 `
@@ -66,6 +80,17 @@ export const PostLeftSideContainer = styled.div`
   gap:4rem;
   flex-direction:column;
   align-items:center;
+
+  @media ${mediaMd}{
+    flex: 0.025;
+  }
+  @media ${mediaSm}{
+    display: none;
+    position: sticky;
+    bottom:0;
+    left:0;
+    right:0;
+  }
 `
 
 export const LeftPostAction = styled.div`
@@ -106,6 +131,14 @@ flex-direction:column;
 align-items:center;
 gap:2rem;
 position: relative;
+  @media ${mediaMd}{
+    display: none;
+    background-color: yellow;
+    position: sticky;
+    bottom:0;
+    left:0;
+    right:0;
+  }
 `
 export const StickyWrapper = styled.div`
 align-items: center;
