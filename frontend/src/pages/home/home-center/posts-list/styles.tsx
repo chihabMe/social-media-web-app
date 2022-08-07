@@ -6,8 +6,8 @@ align-items:center;
     display: flex;
     flex-direction:column;
     gap:1rem;
-    padding: 4rem 2rem;
     border-radius: 10px;
+    
 `
 export const LoadingWrapper = styled.div`
     width:100%;

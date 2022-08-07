@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaSm } from "../../../../styles/sizes";
 
 export const PostAddContainer = styled.div`
     width:100%;
@@ -9,6 +10,9 @@ export const PostAddContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap:2rem;
+    @media ${mediaSm}{
+        padding:2rem 1rem;
+    }
     button{
         width:100%;
         color:${props=>props.theme.bg} !important;

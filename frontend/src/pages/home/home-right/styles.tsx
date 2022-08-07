@@ -25,23 +25,28 @@ align-items: center;
 width:100%;
 position: sticky;
 top:10rem;
+gap:1rem;
     
 `
 export const RightSideSearch = styled.form`
     display: flex;
-    background-color: ${props=>props.theme.bg};
-    padding: 0.4rem 0.8rem;
+
 `
 export const RightSideSearchInput = styled.input`
-    border: none;
+    padding: 0.5rem 0.8rem;
     outline: none;
     font-size: 1.2rem;
     font-weight: bold;
     min-height: 3.5rem;
     width: 100%;
     text-transform: capitalize;
-    background-color: transparent;
     color: ${props=>props.theme.text};
+    background-color: ${props=>props.theme.bg};
+    border:none;
+    border-radius: 5px;
+    &:focus{
+        outline:2px solid ${props=>props.theme.primary};
+    }
 `
 export const RightSideTitle = styled.h2`
     color: ${props=>props.theme.primary};

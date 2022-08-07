@@ -52,6 +52,7 @@ function App() {
 const AppContainer = styled.div`
 width:100%;
 max-width:1400px;
+min-height: 100vh;
 margin:0 auto;
 background-color: ${props=>props.theme.bgSoft};
 `

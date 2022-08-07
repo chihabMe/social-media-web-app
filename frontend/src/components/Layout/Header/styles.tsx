@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { mediaMd } from "../../../styles/sizes";
 
 
  export const HeaderContainer = styled.div`
@@ -10,6 +11,9 @@ import styled from "styled-components/macro";
     position: sticky;
     top:0;
     z-index: 20;
+    @media ${mediaMd}{
+        padding:2rem 3rem;
+    }
 ` 
 export const Panel = styled.div`
     display: flex;
