@@ -12,6 +12,8 @@ import GlobalStyles from './styles/global';
 import styled, {ThemeProvider} from 'styled-components'
 import {useState} from 'react'
 import {lightTheme,darkTheme} from './utils/theme'
+import HomeLeftSide from './components/home-left';
+import HomeRightSide from './components/home-right';
 let themeName = localStorage.getItem('theme')
 let initLight:boolean;
   if(themeName){
@@ -38,8 +40,9 @@ function App() {
     <AppContainer className="App">
       <GlobalStyles />
       {isLogged &&<Header changeTheme={changeTheme}/>}
+
         <Routes>
-          <Route path='/' element={<PrivateRoute children={<Home/>}/>}/>
+          <Route path='/' element={<WrapperComponent Element={Home} />}/>
           <Route path='/post/:slug' element={<PrivateRoute children={<Post/>}/>}/>
           <Route path='/login'  element={<Login/>} />
           <Route path='/signup'  element={<Signup/>} />
@@ -49,6 +52,23 @@ function App() {
     </ThemeProvider>
   );
 }
+const WrapperComponent:React.FC<{Element:any}> = ({Element}) =>{
+
+  return <PrivateRoute>
+          <ContentWrapper>
+        <HomeLeftSide/>
+        <Element/>
+        <HomeRightSide/>
+      </ContentWrapper>
+  </PrivateRoute>
+}
+const ContentWrapper = styled.div`
+  width:100%;
+   display :flex ;
+   justify-content: space-between;
+   gap:1rem;
+   padding:0 2rem;
+`
 const AppContainer = styled.div`
 width:100%;
 max-width:1400px;

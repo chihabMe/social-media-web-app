@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from random import randint
 from django.utils.text import slugify
+from requests import request
 
 User = get_user_model()
 

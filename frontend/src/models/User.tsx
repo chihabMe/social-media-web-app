@@ -5,8 +5,8 @@ type User  = {
     id:string;
     avatar:string;
     email?:string|null;
-    followers_count:number;
     following_count:number;
     posts_count:number;
+    followed:boolean;
 }
 export default User;

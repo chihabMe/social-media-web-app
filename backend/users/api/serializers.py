@@ -18,12 +18,16 @@ class UserSerializer(serializers.ModelSerializer):
     avatar = serializers.SerializerMethodField(read_only=True)
     username = serializers.SerializerMethodField(read_only=True)
     email = serializers.SerializerMethodField(read_only=True)
+    followed = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
         fields = ("username",  'following_count',
-                  "posts_count", "avatar", "email")
+                  "posts_count", "avatar", "email",'followed')
 
+    def get_followed(self,profile):
+        user = self.context.get("request").user
+        return profile in  user.profile.following.all()
     def get_username(self,profile):
         return profile.user.username
     def get_email(self,profile):
@@ -31,7 +35,9 @@ class UserSerializer(serializers.ModelSerializer):
     def get_avatar(self, profile):
         image = profile.get_absolute_avatar_url()
         request = self.context.get("request")
-        return request.build_absolute_uri(image)
+        if image:
+            return request.build_absolute_uri(image)
+        return None
 
 
 class MyTokenObtainSerializer(TokenObtainPairSerializer):

@@ -1,20 +1,27 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view,parser_classes
+
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .serializers import CommentSerializer,PostSerializer
 from .models import Post,Comment,Image
 from rest_framework.parsers import MultiPartParser,FormParser,JSONParser
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.pagination import PageNumberPagination
 
 @api_view(['GET','POST'])
 @parser_classes([FormParser,MultiPartParser])
 def posts_list(request,format=None):
     if request.method=='GET':
-        data = Post.objects.all()
-        serializer = PostSerializer(data,many=True,context={"request":request})
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        paginator = PageNumberPagination()
+        paginator.page_size=5
+        post_objects = Post.objects.all()
+        result_page=  paginator.paginate_queryset(post_objects,request)
+        serializer = PostSerializer(result_page,many=True,context={"request":request})
+        return paginator.get_paginated_response(serializer.data)
+        #return Response(serializer.data,status=status.HTTP_200_OK)
     elif request.method=='POST':
         serializer = PostSerializer(data=request.data,context={"request":request})
         if serializer.is_valid():
@@ -22,7 +29,10 @@ def posts_list(request,format=None):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
     return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-
+class PostsList(ListCreateAPIView):
+    queryset = Post.objects.all()
+    parser_classes=(FormParser,MultiPartParser)
+    serializer_class=PostSerializer
 @api_view(['GET','PUT','DELETE'])
 def post_details(request,slug):
     post = get_object_or_404(Post,slug=slug)

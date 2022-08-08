@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-+psjg9x7hm8ne+w9y-__nnjxd!uc#$yu!e5sw=!5^nucz#z=1=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.5','localhost','127.0.0.1']
 
 
 # Application definition
@@ -31,10 +31,12 @@ INSTALLED_APPS = [
     #locals
     'users.apps.UsersConfig',
     'posts.apps.PostsConfig',
+    'groups.apps.GroupsConfig',
     #3d party
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'taggit',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,9 +129,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS':"rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE":4
 }
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=45),
@@ -161,7 +164,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-CORS_ALLOWED_ORIGINS=['http://127.0.0.1:8000','http://localhost:3000']
+CORS_ALLOWED_ORIGINS=['http://127.0.0.1:8000','http://localhost:3000','http://192.168.1.5:3001']
 #CORS_ALLOW_ALL_ORIGINS=True
 
 ###static / media files

@@ -3,10 +3,8 @@ import { useContext,useEffect } from 'react';
 import { AuthContext } from '../../context/auth-context';
 import { baseApiUrl } from '../../utils/globals';
 import useFetch from '../../hooks/use-fetch';
-import { HomeContainer } from './styles/HomeStyles';
-import HomeLeftSide from './home-left';
-import HomeRightSide from './home-right';
 import HomeCenter from './home-center';
+import { useParams } from 'react-router-dom';
 
 const Home = () => {
     const {user,logout} = useContext(AuthContext)
@@ -16,11 +14,7 @@ const Home = () => {
     request(`${baseApiUrl}/posts/`,'get')
     },[])
   return (
-    <HomeContainer>
-      <HomeLeftSide/>
       <HomeCenter/>
-      <HomeRightSide/>
-    </HomeContainer>
   )
 }
 

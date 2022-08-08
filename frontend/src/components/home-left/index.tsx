@@ -13,13 +13,23 @@ const HomeLeftSide = () => {
       <StickyWrapper>
 
         <LeftSideList>
+        <LeftSideTitle>Trending</LeftSideTitle>
+            <LeftSideSection Image="https://picsum.photos/50/50" tag title='programing '/>
+            <LeftSideSection Image="https://picsum.photos/50/50" tag title='java '/>
+            <LeftSideSection Image="https://picsum.photos/50/50" tag title='python  '/>
+            <LeftSideSection Image="https://picsum.photos/50/50" tag title='web '/>
+        </LeftSideList>
+       {/* 
+        <LeftSideList>
+
             <LeftSideSection Icon={HiHome}  title='Main'/>
             <LeftSideSection Icon={HiUserGroup}  title='Friends'/>
             <LeftSideSection Icon={HiPhotograph}  title='Photos'/>
             <LeftSideSection Icon={HiVideoCamera}  title='Videos'/>
         </LeftSideList>
-        <LeftSideTitle>Groups</LeftSideTitle>
+  */}
         <LeftSideList>
+        <LeftSideTitle>Groups</LeftSideTitle>
             <LeftSideSection Image="https://picsum.photos/50/50" title='programing '/>
             <LeftSideSection Image="https://picsum.photos/50/50" title='java '/>
             <LeftSideSection Image="https://picsum.photos/50/50" title='python  '/>

@@ -16,13 +16,16 @@ const PostAdd: React.FC = () => {
   const { isLoading, errors, data, request } = useFetch();
   const submitHandler = (e: any) => {
     e.preventDefault();
-    if (postState.body.trim().length < 3) return;
+    if (postState.body.trim().length < 3){
+      window.alert('the post must have a body ')
+      return 
+    } ;
     let endpoint = "/posts/";
     let full_url = baseApiUrl + endpoint;
     let formData = new FormData()
-      formData.append("image",postState.image)
-      formData.append("body",postState.body)
-      formData.append("video",postState.video)
+    if(postState.image)formData.append("image",postState.image)
+    if(postState.body)formData.append("body",postState.body)
+    if(postState.video)formData.append("video",postState.video)
     request(full_url, "post",undefined, formData);
   };
   useEffect(() => {

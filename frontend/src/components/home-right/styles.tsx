@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { md } from '../../../styles/sizes'
+import { md } from '../../styles/sizes'
 
 export const HomeRightSideContainer = styled.div`
 position: relative;

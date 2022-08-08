@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
-import { mediaMd } from "../../../styles/sizes";
+import { mediaMd, mediaSm } from "../../../styles/sizes";
 
 
  export const HeaderContainer = styled.div`
@@ -84,6 +85,7 @@ export  const SearchContainer = styled.div`
     width:100%;
     max-width: 35rem;
     display: flex;
+    position: relative;
     padding: 0.5rem 1rem;
     border-radius: 3px;
     &.active{
@@ -91,13 +93,28 @@ export  const SearchContainer = styled.div`
 
     }
  `
+ export const SearchLink = styled(Link)`
+    text-decoration: none;
+    display: none;
+    svg{
+        width:2.5rem;
+        height:2.5rem;
+        color:${props=>props.theme.primary};
+    }
+    @media ${mediaSm}{
+        display: block;
+    }
+ `
  export const SearchForm = styled.form`
     height: 3rem;
     width:100%;
     display: flex;
     align-items: center;
-    @media screen and (max-width:650px){
+    @media ${mediaMd}{
+    }
+    @media ${mediaSm} {
         display: none;
+        
     }
     svg{
             color:${props=>props.theme.primary} !important;
@@ -105,6 +122,7 @@ export  const SearchContainer = styled.div`
  `
  export const  SearchInput = styled.input`
  height: 100%;
+
  color: ${props=>props.theme.text};
  width:100%;
  min-height: 2rem;
@@ -136,4 +154,65 @@ a{
 color: ${props=>props.theme.primary} ;
 }
     
+ `
+ export const SearchResultContainer = styled.ul`
+    width:100%;
+    list-style: none;
+    position: absolute;
+    top:150%;
+    padding:1rem 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: ${props=>props.theme.bg};
+    box-shadow:0 0 2px 1px ${props=>props.theme.primary};
+    left:0;
+    @media ${mediaSm} {
+        display: none;
+        
+    }
+ `
+ export const SearchResultItem = styled.li`
+    gap:1rem;
+    width:100%;
+    border-radius: 3px;
+    display: flex;
+    align-items:center;
+    padding:0.9rem 1rem;
+    font-size:1.4rem;
+    color:${props=>props.theme.text};
+    text-align:left;
+    cursor: pointer;
+    button{
+
+ background-color: ${props=>props.theme.primary};
+ color:white;
+ border-radius:5px;
+ cursor: pointer;
+ padding: 0.8rem 1rem;
+ border:none;
+ text-align: right;
+ align-self: flex-end;
+ justify-self: flex-end;
+ &.active{
+    background-color: ${props=>props.theme.red};
+ }
+    }
+ `
+ export const SearchResultAvatar = styled.img`
+   width:3.5rem;
+   height:3.5rem;
+   border-radius:50% ;
+ `
+ export const SearchResultUserUsername  = styled.h4`
+    color:${props=>props.theme.text};
+    font-size:1.4rem;
+    border-radius: bold;
+    text-transform: capitalize;
+    width:50%;
+ `
+ export const SearchResultUserFollowButton = styled.button`
+ `
+ export const NoResults = styled.h2`
+    color:${props=>props.theme.primary};
  `

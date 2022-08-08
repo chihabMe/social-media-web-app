@@ -158,7 +158,9 @@ max-width:20rem;
 padding:1rem;
 display: flex;
 flex-direction: column;
+align-items: center;
 gap:1rem;
+
 button{
   padding: 1rem 2.5rem;
   border-radius: 5px;

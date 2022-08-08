@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { md } from "../../../styles/sizes";
+import { md } from "../../styles/sizes";
 
 export const HomeLeftSideContainer  = styled.div`
     max-height:100vh;
@@ -57,7 +57,7 @@ export const LeftSideTitle= styled.h2`
 width:100%;
 max-width: 200px;
 text-align:left;
-font-size: 1.6rem;
+font-size: 1.8rem;
 color:${props=>props.theme.primary};
 font-weight: bold;
 `
@@ -66,6 +66,10 @@ export const LeftSideSectionTitle = styled.li`
     transition: all 0.2s ease;
     font-size: 1.35rem;
     color: ${props=>props.theme.text};
+    text-transform: capitalize;
 
-    
+   &:hover{
+
+        color:${props=>props.theme.primary};
+   } 
 `
