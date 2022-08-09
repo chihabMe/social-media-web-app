@@ -13,13 +13,18 @@ import {
   PanelUserActions,
   PanelUserAction,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const HeaderPanel:React.FC<{changeTheme:()=>void}> = (props) => {
   const theme = useContext(ThemeContext)
+  let navigator = useNavigate()
   const { user,logout } = useContext(AuthContext);
   const [showAction , setShowAction]= useState(false)
   const showActionToggle = ()=>{
     setShowAction(prev=>!prev);
+  }
+  const navigateToProfile = ()=>{
+    navigator('/profile')
   }
 
   return (
@@ -48,7 +53,7 @@ const HeaderPanel:React.FC<{changeTheme:()=>void}> = (props) => {
         </svg>
       </UserAccount>
         <PanelUserActions className={showAction ?"active":""}>
-            <PanelUserAction>profile</PanelUserAction>
+            <PanelUserAction onClick={navigateToProfile}>profile</PanelUserAction>
             <PanelUserAction onClick={props.changeTheme}>change to  {theme?.name=='light' ? "dark" :"light"}</PanelUserAction>
             <PanelUserAction onClick={logout}>logout</PanelUserAction>
           </PanelUserActions>

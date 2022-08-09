@@ -14,6 +14,7 @@ import {useState} from 'react'
 import {lightTheme,darkTheme} from './utils/theme'
 import HomeLeftSide from './components/home-left';
 import HomeRightSide from './components/home-right';
+import Profile from './pages/profile/index';
 let themeName = localStorage.getItem('theme')
 let initLight:boolean;
   if(themeName){
@@ -43,6 +44,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<WrapperComponent Element={Home} />}/>
+          <Route path='/profile' element={<WrapperComponent Element={Profile} />}/>
           <Route path='/post/:slug' element={<PrivateRoute children={<Post/>}/>}/>
           <Route path='/login'  element={<Login/>} />
           <Route path='/signup'  element={<Signup/>} />

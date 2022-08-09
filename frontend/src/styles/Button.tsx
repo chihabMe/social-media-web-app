@@ -9,6 +9,7 @@ interface buttonInterface  {
   size?:string;
   border?:string;
   valid?:boolean;
+  theme?:any;
 
 }
 export const Button = styled.button<buttonInterface>`
@@ -28,4 +29,15 @@ padding:${props=>props.px ? props.px :'0.6rem'} ${({py})=>py ? py :'1.5rem'} ;
   &:active{
     opacity:0.8;
   }
+`
+export const PrimaryButton = styled(Button)`
+  background-color:${({theme})=>theme.primary};
+`
+export const DangerButton = styled(Button)`
+  color:${({theme})=>theme.red};
+  background-color: white;
+`
+export const NormalButton = styled(Button)`
+  background-color:${props=>props.theme.text};
+  color:${props=>props.theme.bg};
 `
