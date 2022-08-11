@@ -10,6 +10,9 @@ from .models import Post,Comment,Image
 from rest_framework.parsers import MultiPartParser,FormParser,JSONParser
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.pagination import PageNumberPagination
+from django.contrib.auth import get_user_model
+
+User  = get_user_model()
 
 @api_view(['GET','POST'])
 @parser_classes([FormParser,MultiPartParser])
@@ -106,5 +109,6 @@ def post_like(request,post_slug):
         data['action']='liked'
     data['count']=post.likes.count()
     return Response(data=data,status=status.HTTP_201_CREATED)
+
 
 

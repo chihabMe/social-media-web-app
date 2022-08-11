@@ -13,19 +13,18 @@ import Paginator from "../../../../components/Layout/paginator/Paginator";
 import { useLocation, useParams } from "react-router-dom";
 
 let post_endpoint="/posts/";
-let full_endpoint = baseApiUrl+post_endpoint ;
-const PostList = () => {
-  const {posts,addPosts} = useContext(PostContext)
+let normalFeed = baseApiUrl+post_endpoint ;
+const PostList:React.FC<{username?:string}> = ({username}) => {
   const {isLoading,errors,request,data} = useFetch()
-  const location  = useLocation()
+  let full_endpoint:string;
+  if(username){
+    full_endpoint=baseApiUrl+`/users/${username}/posts/`;
+  }else{
+    full_endpoint = normalFeed
+  }
     useEffect(()=>{
       request(full_endpoint,"get")
     },[])
-    useEffect(()=>{
-      if(data){
-        addPosts(data.results)
-      }
-    },[data])
 
   return (
     <PostListContainer>
@@ -33,9 +32,9 @@ const PostList = () => {
       {isLoading && <LoadingWrapper><FadeLoader color={primaryColor} /></LoadingWrapper>} 
       {errors && <h1>error</h1>}
       {
-        posts?.map((post,index)=>{
+        data?.results?.map((post:post)=>{
           return <PostItem
-            key={index}
+            key={post.id}
             slug={post.slug}
             avatar={post.avatar_image}
             image={post.image}

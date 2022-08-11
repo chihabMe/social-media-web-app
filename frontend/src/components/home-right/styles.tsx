@@ -84,6 +84,6 @@ export const FriendAvatar = styled.img`
 `
 export const FriendUserName = styled.h3`
     font-size: 1.5rem;
-    color:${props=>props.theme.text}
+    color:${props=>props.theme.text};
 
 `

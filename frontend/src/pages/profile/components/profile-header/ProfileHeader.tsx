@@ -3,9 +3,9 @@ import { Button, NormalButton, PrimaryButton } from "../../../../styles/Button";
 import FollowButton from "../../../../components/Layout/FollowButton";
 import {
   ProfileHeaderContainer,
-  ProfileHeaderLeft,
+  ProfileHeaderTop,
+  ProfileHeaderContent,
   ProfileUserAvatar,
-  ProfileHeaderRight,
   ProfileHeaderRightTop,
   ProfileUserUsername,
   ProfileHeaderRightButtons,
@@ -21,21 +21,13 @@ const ProfileHeader: React.FC<{
 }> = ({ username,me, desc, avatar }) => {
   return (
     <ProfileHeaderContainer>
-      <ProfileHeaderLeft>
+      <ProfileHeaderTop>
         <ProfileUserAvatar src={avatar} />
-      </ProfileHeaderLeft>
-      <ProfileHeaderRight>
+      </ProfileHeaderTop>
+      <ProfileHeaderContent>
         <ProfileHeaderRightTop>
 
           <ProfileUserUsername>{username}</ProfileUserUsername>
-          <ProfileHeaderRightButtons>
-            {!me  && <FollowButton  user={username} followed={false} />}
-            {me && 
-            <NormalButton valid >
-              edit
-            </NormalButton>
-              }
-          </ProfileHeaderRightButtons>
         </ProfileHeaderRightTop>
         <ProfileHeaderRightBottom>
           <ProfileHeaderBottomDesc>
@@ -45,7 +37,15 @@ const ProfileHeader: React.FC<{
             totam vitae!
           </ProfileHeaderBottomDesc>
         </ProfileHeaderRightBottom>
-      </ProfileHeaderRight>
+      </ProfileHeaderContent>
+          {/*<ProfileHeaderRightButtons>
+            {!me  && <FollowButton  user={username} followed={false} />}
+            {me && 
+            <NormalButton valid >
+              edit
+            </NormalButton>
+              }
+            </ProfileHeaderRightButtons>*/}
     </ProfileHeaderContainer>
   );
 };

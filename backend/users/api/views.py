@@ -1,4 +1,6 @@
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+
+from posts.serializers import CommentSerializer, PostSerializer
 from .serializers import MyTokenObtainSerializer,RegistrationSerializer,UserSerializer
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
@@ -61,3 +63,20 @@ class Registration(generics.CreateAPIView):
     queryset= User.objects.all()
     permission_classes=(AllowAny,)
     serializer_class = RegistrationSerializer
+
+@api_view(['GET'])
+def get_resent_comments(request,username):
+    user = get_object_or_404(User,username=username)
+    comments  = user.user_post_comments.all().order_by("-created")[:6]
+    serializer = CommentSerializer(comments,context={"request":request},many=True)
+    return Response(serializer.data,status=status.HTTP_200_OK)
+@api_view(['GET'])
+def get_user_posts(request,username):
+    user = get_object_or_404(User,username=username)
+    posts =  user.posts.all().order_by('-created')
+    paginator = PageNumberPagination() 
+    paginator.page_size=5
+    result_page  = paginator.paginate_queryset(posts,request)
+    serializer = PostSerializer(result_page,many=True,context={"request":request})
+    return paginator.get_paginated_response(serializer.data)
+

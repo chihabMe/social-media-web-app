@@ -1,3 +1,4 @@
+from pkgutil import read_code
 from requests import request
 from rest_framework import serializers
 from taggit.serializers import TaggitSerializer,TagListSerializerField
@@ -65,15 +66,18 @@ class PostSerializer(TaggitSerializer,serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     likes   = serializers.CharField(read_only=True,source='get_total_likes')
     replies   = serializers.CharField(read_only=True,source='get_total_replies')
-    avatar = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField(read_only=True)
+    postSlug = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Comment
-        fields=('body','created','updated','id','likes','replies','avatar')
+        fields=('body','created','postSlug','updated','id','likes','replies','avatar')
     def get_avatar(self,comment):
         request = self.context.get("request")
         avatar_image = comment.author.profile.get_absolute_avatar_url()
         return request.build_absolute_uri(avatar_image)
+    def get_postSlug(self,comment):
+        return comment.post.slug
     def create(self, validated_data):
         comment = Comment(**validated_data)
         comment.save()

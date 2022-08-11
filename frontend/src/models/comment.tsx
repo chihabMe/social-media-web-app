@@ -9,5 +9,6 @@ username:string;
 avatar:string,
 replies:number,
 likes:number,
+postSlug:string,
 }
 export default commentType;

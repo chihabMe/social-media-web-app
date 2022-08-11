@@ -4,7 +4,7 @@ import { mediaMd, mediaSm } from '../../../../styles/sizes'
 export const ProfileHeaderContainer = styled.section`
 width:100%;
 display: flex;
-max-width: 70rem;
+flex-direction: column;
 align-items: center;
 gap:1rem;
 @media ${mediaSm}{
@@ -12,8 +12,8 @@ gap:1rem;
     gap:3rem;
 }
 `
-export const ProfileHeaderLeft   = styled.div`
-flex:0.2;
+export const ProfileHeaderTop   = styled.div`
+width:100%;
     
 `
 export const ProfileUserAvatar  = styled.img`
@@ -21,9 +21,10 @@ export const ProfileUserAvatar  = styled.img`
     height:10rem;
     border-radius: 50%;
 `
-export const ProfileHeaderRight = styled.div`
+export const ProfileHeaderContent = styled.div`
 flex:0.7;
 display: flex;
+gap:3rem;
 flex-direction: column;
 justify-content: space-between;
 @media ${mediaSm}{
@@ -33,17 +34,16 @@ justify-content: space-between;
 export const ProfileHeaderRightTop = styled.div`
     display: flex;
     justify-content: space-between;
-    @media ${mediaSm}{
-        align-items:center;
-        gap:2rem;
-        flex-direction:column-reverse ;
-    }
+    align-items:center;
+    gap:2rem;
+    flex-direction:column-reverse ;
 `
-export const ProfileUserUsername = styled.h2`
+export const ProfileUserUsername = styled.h1`
 
     color:${props=>props.theme.title};
     font-weight: bold;
-    font-size:1.7rem;
+    font-size:2.2rem;
+    text-transform: capitalize;
     text-align: left;
     @media ${mediaSm}{
         font-size: 2.2rem;
@@ -75,9 +75,9 @@ flex-direction: column;
 `
 export const ProfileHeaderBottomDesc = styled.p`
     font-size:1.3rem;
-    max-width: 30rem;
+    max-width: 60rem;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     color:${props=>props.theme.text};
     @media ${mediaSm}{
         text-align:center;

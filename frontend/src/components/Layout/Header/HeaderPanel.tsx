@@ -31,7 +31,6 @@ const HeaderPanel: React.FC<{ changeTheme: () => void }> = (props) => {
   return (
     <Panel>
       <HeaderPanelIcon Icon={HiOutlinePlusCircle} />
-      <HeaderPanelIcon Icon={HiOutlineUser} />
       <HeaderPanelIcon Icon={HiChatAlt} />
       <HeaderPanelIcon Icon={HiOutlineBell} />
       <UserAccount onClick={showActionToggle}>
