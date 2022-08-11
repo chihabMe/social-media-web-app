@@ -57,6 +57,7 @@ export const PostContextProvider :React.FC<{children:any}> = (props)=>{
     }
     const addPosts = (postList:post[])=>{
         if(postList)
+        console.log(postList)
         setPosts(prev=>[...prev,...postList])
     }
     let value = {

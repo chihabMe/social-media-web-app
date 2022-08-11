@@ -93,7 +93,7 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
 
         }
         get_user()
-        },[tokens])
+        },[])
     const logout = ()=>{
         setIsLogged(false)
         setTokens(null)

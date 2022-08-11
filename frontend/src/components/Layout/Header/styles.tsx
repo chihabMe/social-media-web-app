@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
 import { mediaMd, mediaSm } from "../../../styles/sizes";
 
 
- export const HeaderContainer = styled.div`
+ export const HeaderContainer = styled.header`
     width:100%;
     display:flex;
     justify-content: space-between;
@@ -14,6 +14,17 @@ import { mediaMd, mediaSm } from "../../../styles/sizes";
     z-index: 20;
     @media ${mediaMd}{
         padding:2rem 3rem;
+        
+    }
+    
+    @media ${mediaSm}{
+        flex-direction: column;
+        padding:7rem 0;
+        align-items:center;
+        bottom: 0;
+        height:100vh;
+        width:auto;
+        max-width:17vw;
     }
 ` 
 export const Panel = styled.div`
@@ -23,8 +34,16 @@ export const Panel = styled.div`
     gap:2rem;
     svg{
         color:${props=>props.theme.textSoft}  !important;
-        width:2.5rem;
-        height:2.5rem;
+        width:2.2rem !important;
+        height:2.2rem !important;
+    }
+    @media ${mediaSm}{
+        gap:1rem;
+        align-items:center;
+        flex-direction: column;
+        width:100%;
+        height:unset;
+
     }
 `
 export const PanelUserActions = styled.ul`
@@ -42,6 +61,11 @@ border-radius: 5px;
 
 &.active{
     display: block;
+
+@media ${mediaSm}{
+    top:0;
+    left:150%;
+}
 
 }
 `
@@ -62,23 +86,35 @@ background-color:${props=>props.theme.bgSoft};
 
 `
 export const UserAccount = styled.div`
+
     margin-left: 1rem;
     display: flex;
     align-items: center;
     gap:1rem;
     cursor: pointer;
+    @media ${mediaSm}{
+        align-items: center;
+        flex-direction: column;
+        align-items:center;
+        position: relative;
+    }
+
 `
 export const UserAccountAvatar = styled.img`
     width:3.5rem;
     height: 3.5rem;
     border-radius: 25%;
+    @media ${mediaSm}{
+        width:3rem;
+        height:3rem;
+    }
 `
 
  export const LeftSide = styled.div`
     width: 50%;
     display: flex;
-    justify-content: space-between;
-    gap: 4rem;
+    justify-content: center;
+    gap: 1rem;
     align-items: center;
  `
 export  const SearchContainer = styled.div`
@@ -92,18 +128,50 @@ export  const SearchContainer = styled.div`
         box-shadow: 0 0 2px 1px ${props=>props.theme.primary};
 
     }
+    @media ${mediaSm}{
+        max-width: unset;
+    }
+
  `
- export const SearchLink = styled(Link)`
+ export const LeftSideMenu= styled.ul`
+ list-style: none;
+ display: flex;
+ align-items: center;
+ gap:2rem;
+ @media ${mediaSm}{
+    gap:1rem;
+    flex-direction: column;
+ }
+ li{
+    a{
     text-decoration: none;
-    display: none;
-    svg{
-        width:2.5rem;
-        height:2.5rem;
+    display: block;
+    padding:0.8rem;
+    border-radius: 25%;
+    background-color: ${props=>props.theme.bgSoft};
+    &.active{
+        svg{
+
         color:${props=>props.theme.primary};
+        }
+    }
+    svg{
+        width:2.2rem;
+        height:2.2rem;
+        color:${props=>props.theme.textSoft};
+    }
+    &:hover{
+        svg{
+
+        color:${props=>props.theme.primary};
+        }
     }
     @media ${mediaSm}{
         display: block;
     }
+    }
+ }
+ 
  `
  export const SearchForm = styled.form`
     height: 3rem;
@@ -155,7 +223,7 @@ color: ${props=>props.theme.primary} ;
 }
     
  `
- export const SearchResultContainer = styled.ul`
+ export const SearchResultContainer = styled.div`
     width:100%;
     list-style: none;
     position: absolute;
@@ -172,7 +240,8 @@ color: ${props=>props.theme.primary} ;
         
     }
  `
- export const SearchResultItem = styled.li`
+ export const SearchResultItem = styled(Link)`
+    text-decoration: none;
     gap:1rem;
     width:100%;
     border-radius: 3px;
@@ -215,4 +284,31 @@ color: ${props=>props.theme.primary} ;
  `
  export const NoResults = styled.h2`
     color:${props=>props.theme.primary};
+ `
+ export const HeaderNavLink  = styled(NavLink)`
+    
+    text-decoration: none;
+    display: block;
+    padding:0.8rem;
+    border-radius: 25%;
+    background-color: ${props=>props.theme.bgSoft};
+    svg{
+        width:2.2rem;
+        height:2.2rem;
+        color:${props=>props.theme.textSoft};
+    }
+    .active{
+        color:${props=>props.theme.primary};
+    }
+    &:hover{
+        svg{
+
+        color:${props=>props.theme.primary};
+        }
+    }
+    @media ${mediaSm}{
+        display: block;
+    }
+    }
+    
  `

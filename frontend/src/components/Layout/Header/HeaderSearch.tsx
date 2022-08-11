@@ -10,7 +10,7 @@ import {
   SearchContainer,
   SearchForm,
   SearchInput,
-  SearchLink,
+  HeaderNavLink,
 } from "./styles";
 
 const HeaderSearch = () => {
@@ -40,9 +40,9 @@ const HeaderSearch = () => {
   },[data])
   return (
     <SearchContainer className={isSearching ? "active" : ""}>
-      <SearchLink to='/search'>
+      <HeaderNavLink to='/search'>
           <SearchIcon color={isSearching ? primaryColor : "gray"} />
-      </SearchLink>
+      </HeaderNavLink>
       <SearchForm onSubmit={searchSubmitHandler}>
         <SearchInput
           onFocus={() => {

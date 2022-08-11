@@ -24,6 +24,13 @@ const HeaderPanelIcon:React.FC<{children?:any,Icon:React.FC,active?:boolean,clic
 const HeaderPanelIconContainer = styled.div`
 position: relative;
 cursor: pointer;
+padding:.8rem;
+border-radius: 25%;
+background-color: ${props=>props.theme.bgSoft};
+svg{
+    width:2.3rem;
+    height:2.3rem;
+}
 `
 const ActiveDot = styled.div`
     width: 1rem;

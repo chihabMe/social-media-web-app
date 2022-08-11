@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from '../../hooks/use-fetch'
-import { Button } from '../../styles/Button'
+import { Button, PrimaryButton } from '../../styles/Button'
 import { baseApiUrl } from '../../utils/globals'
 
 const FollowButton:React.FC<{user:string,followed:boolean}> = ({user,followed}) => {
@@ -18,7 +18,7 @@ const FollowButton:React.FC<{user:string,followed:boolean}> = ({user,followed}) 
   
     },[data])
   return (
-    <Button onClick={addFollow} className={followed_?"active":""} valid>{followed_?"unfollow":"follow"}</Button>
+    <PrimaryButton onClick={addFollow} color='white' className={followed_?"active":""} valid>{followed_?"unfollow":"follow"}</PrimaryButton>
   )
 }
 

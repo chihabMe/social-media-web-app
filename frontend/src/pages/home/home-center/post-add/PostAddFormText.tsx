@@ -11,7 +11,7 @@ const PostAddFormText: React.FC = () => {
   };
   return (
     <PostAddFormController>
-      <PostAddAvatar src={user?.avatar} />
+      {/* <PostAddAvatar src={user?.avatar} /> */}
       <PostAddText
         onChange={bodyChangeHandler}
         value={postState.body}

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ProfileContainer = styled.div`
+export const ProfileContainer = styled.main`
 display: flex;
 flex-direction: column;
 gap:1rem;

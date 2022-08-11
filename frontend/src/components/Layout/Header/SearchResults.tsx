@@ -19,7 +19,7 @@ const SearchResultItemComp: React.FC<{
   avatar: string;
   followed:boolean
 }> = ({link,followed,username,avatar}) => {
-  return <SearchResultItem>
+  return <SearchResultItem to={`/profile/${username}/`}>
 
         <SearchResultAvatar src={avatar}/>
         <SearchResultUserUsername>{username}</SearchResultUserUsername>

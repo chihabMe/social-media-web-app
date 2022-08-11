@@ -7,7 +7,7 @@ const HomeRightSide = () => {
     <HomeRightSideContainer>
       <StickyWrapper>
         <RightSideSearch>
-            <RightSideSearchInput placeholder='search ...'></RightSideSearchInput>
+         <RightSideSearchInput placeholder='search ...'></RightSideSearchInput>
         </RightSideSearch>
         <FriendList/>
       </StickyWrapper>

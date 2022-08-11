@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Post from './pages/post';
 import Header from './components/Layout/Header/Header';
 import Signup from './pages/signup';
+import Logout from './pages/logout';
 import {Route,Routes,BrowserRouter} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 import { AuthContext } from './context/auth-context';
@@ -15,6 +16,7 @@ import {lightTheme,darkTheme} from './utils/theme'
 import HomeLeftSide from './components/home-left';
 import HomeRightSide from './components/home-right';
 import Profile from './pages/profile/index';
+import { mediaSm } from './styles/sizes';
 let themeName = localStorage.getItem('theme')
 let initLight:boolean;
   if(themeName){
@@ -44,10 +46,17 @@ function App() {
 
         <Routes>
           <Route path='/' element={<WrapperComponent Element={Home} />}/>
-          <Route path='/profile' element={<WrapperComponent Element={Profile} />}/>
+
+          <Route path='/profile' >
+            <Route path='' element={<WrapperComponent Element={Profile} /> } />
+            <Route  path=':username' element={<WrapperComponent Element={Profile} /> } />
+
+          </Route>
+ 
           <Route path='/post/:slug' element={<PrivateRoute children={<Post/>}/>}/>
           <Route path='/login'  element={<Login/>} />
           <Route path='/signup'  element={<Signup/>} />
+          <Route path='/logout'  element={<Logout/>} />
         </Routes>
     </AppContainer>
 
@@ -56,7 +65,7 @@ function App() {
 }
 const WrapperComponent:React.FC<{Element:any}> = ({Element}) =>{
 
-  return <PrivateRoute>
+  return  <PrivateRoute>
           <ContentWrapper>
         <HomeLeftSide/>
         <Element/>
@@ -77,5 +86,8 @@ max-width:1400px;
 min-height: 100vh;
 margin:0 auto;
 background-color: ${props=>props.theme.bgSoft};
+   @media ${mediaSm}{
+    display: flex;
+   }
 `
 export default App;

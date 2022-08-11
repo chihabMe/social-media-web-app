@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from random import randint
 from django.utils.text import slugify
 from requests import request
+from taggit.managers import TaggableManager
 
 User = get_user_model()
 
@@ -20,6 +21,7 @@ class Post(models.Model):
     created  = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+    tags = TaggableManager()
     
 
     class Meta:

@@ -3,12 +3,10 @@ import { mediaSm } from "../../../../styles/sizes";
 
 export const PostAddContainer = styled.div`
     width:100%;
-    border-radius: 10px;
-    background-color: ${props=>props.theme.bg};
-    padding:2rem 3rem;
-    max-width: 53rem;
+    border-radius: 3rem;
     display: flex;
     flex-direction: column;
+    padding:2rem 3rem;
     gap:2rem;
     @media ${mediaSm}{
         padding:2rem 1rem;
@@ -39,6 +37,7 @@ export const PostAddForm  = styled.form`
         background-color: ${props=>props.theme.primary};
         color:${props=>props.theme.bg} !important;
         color:white !important;
+        border-radius: 15px !important;
 
     }
 `
@@ -52,13 +51,15 @@ export const PostAddText = styled.textarea`
     width: 100%;
     height: 5rem;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1rem 2rem;
     outline: none;
     font-weight:500;
     font-size: 1.4rem;
     border: none;
-    background-color: ${props=>props.theme.bgSoft};
+    background-color: ${props=>props.theme.bg};
     color: ${props=>props.theme.text};
+
+    border-radius: 20rem;
 
 `
 export const PostAddFormController = styled.div`

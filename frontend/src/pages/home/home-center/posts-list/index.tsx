@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { memo, useContext, useRef, useState } from "react";
 import PostItem from "./post-item";
 import { LoadingWrapper, PostListContainer } from "./styles";
 import useFetch from "../../../../hooks/use-fetch";

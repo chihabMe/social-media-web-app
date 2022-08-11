@@ -1,15 +1,13 @@
 import styled from 'styled-components/macro'
 import { md } from '../../styles/sizes'
 
-export const HomeRightSideContainer = styled.div`
+export const HomeRightSideContainer = styled.aside`
 position: relative;
 flex:0.2;
 display: flex;
 flex-direction: column;
 gap:2rem;
 padding-top: 3rem ;
-padding-left: 1rem;
-padding-right: 1rem;
 align-items: flex-start;
 
     @media screen and (max-width: ${md}){
@@ -30,6 +28,7 @@ gap:1rem;
 `
 export const RightSideSearch = styled.form`
     display: flex;
+    width:100%;
 
 `
 export const RightSideSearchInput = styled.input`
@@ -57,26 +56,30 @@ export const RightSideTitle = styled.h2`
 `
 
 export const FriendsListContainer = styled.ul`
-    background-color: ${props=>props.theme.bg};
-    padding: 2rem 1rem;
-    border-radius: 10px;
-    max-width: 200px;
+    padding: 2rem 0;
     width:100%;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
-    gap:2rem;
 `
 export const FriendItem = styled.li`
 display: flex;
 align-items: center;
-gap:2rem;
+gap:1rem;
 width: 100%;
-height:3rem;
+padding:1rem 1rem;
+border-radius: 10px;
+transition: background-color 0.2s ease ;
+
 cursor: pointer;
+&:hover{
+    background-color: ${props=>props.theme.bg};
+    
+}
 `
 export const FriendAvatar = styled.img`
-    width:3.5rem;
-    height:3.5rem;
+    width:3rem;
+    height:3rem;
     border-radius: 50%;
 `
 export const FriendUserName = styled.h3`

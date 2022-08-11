@@ -1,22 +1,29 @@
-import React from 'react'
-import SearchIcon from '../../../styles/icons/SearchIcon'
-import HeaderSearch from './HeaderSearch'
-import { LeftSide, Logo  } from './styles'
-import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
-
-const Nav = styled(NavLink)`
-text-decoration:none;
-color:white;
-`
+import React from "react";
+//import HeaderSearch from './HeaderSearch'
+import {  LeftSide, LeftSideMenu, Logo } from "./styles";
+import { HiOutlineHome, HiOutlineSearch,HiOutlineCog,HiOutlineLogout } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
 
 export const HeaderLeftSide = () => {
-
   return (
     <LeftSide>
-        <Logo><Nav to='/' >H</Nav></Logo>
-        <HeaderSearch/>
+      <LeftSideMenu>
+        <NavLinkComp to='/' Icon={HiOutlineHome} />
+        <NavLinkComp to='/search' Icon={HiOutlineSearch} />
+        <NavLinkComp to='/settings' Icon={HiOutlineCog} />
+        <NavLinkComp  to='/logout' Icon={HiOutlineLogout} />
+      </LeftSideMenu>
+    </LeftSide>
+  );
+};
 
-      </LeftSide>
-  )
+const NavLinkComp:React.FunctionComponent<{Icon:any,to:string}> = ({Icon,to})=>{
+        return <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? "active" : "")}
+            to={to}
+          >
+            <Icon />
+          </NavLink>
+        </li>
 }

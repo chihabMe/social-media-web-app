@@ -46,7 +46,7 @@ const PostAdd: React.FC = () => {
           {isLoading && 
               <PulseLoader size={7} color={backgroundColor} />
           }
-          {!isLoading && "post"}
+          {!isLoading && "post"  }
         </Button>
       </PostAddForm>
     </PostAddContainer>

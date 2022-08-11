@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, NormalButton, PrimaryButton } from "../../../../styles/Button";
+import FollowButton from "../../../../components/Layout/FollowButton";
 import {
   ProfileHeaderContainer,
   ProfileHeaderLeft,
@@ -16,7 +17,8 @@ const ProfileHeader: React.FC<{
   username: string;
   desc: string;
   avatar: string;
-}> = ({ username, desc, avatar }) => {
+  me:boolean;
+}> = ({ username,me, desc, avatar }) => {
   return (
     <ProfileHeaderContainer>
       <ProfileHeaderLeft>
@@ -24,14 +26,15 @@ const ProfileHeader: React.FC<{
       </ProfileHeaderLeft>
       <ProfileHeaderRight>
         <ProfileHeaderRightTop>
+
           <ProfileUserUsername>{username}</ProfileUserUsername>
           <ProfileHeaderRightButtons>
-            <PrimaryButton valid px="1rem" py="2rem" color="white">
-              more
-            </PrimaryButton>
-            <NormalButton valid px="1rem" py="2rem">
+            {!me  && <FollowButton  user={username} followed={false} />}
+            {me && 
+            <NormalButton valid >
               edit
             </NormalButton>
+              }
           </ProfileHeaderRightButtons>
         </ProfileHeaderRightTop>
         <ProfileHeaderRightBottom>

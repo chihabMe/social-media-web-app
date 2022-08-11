@@ -13,18 +13,17 @@ const showOnAnimation = keyframes`
 export const PostItemContainer = styled(Link)`
     cursor: pointer;
     text-decoration:none;
-    width:80%;
-    max-width:70rem;
+    width:100%;
+    max-width:50rem;
     padding: 1rem;
     background-color: ${props=>props.theme.bg};
     display: flex;
     flex-direction: column;
     gap:1rem;
-    border-radius: 5px;
-    transition: all 0.2s linear;
+    border-radius: 10px;
     animation: ${showOnAnimation} 0.3s ease;
     &:hover{
-        box-shadow: 0 0 5px 1px ${props=>props.theme.primary};
+        box-shadow: 0 0 2px 1px ${props=>props.theme.primary};
     }
     @media screen and (max-width:${sm}) {
         width: 100%;

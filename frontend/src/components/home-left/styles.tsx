@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import { md } from "../../styles/sizes";
 
-export const HomeLeftSideContainer  = styled.div`
+export const HomeLeftSideContainer  = styled.aside`
     max-height:100vh;
     position: sticky;
     top:5rem;
