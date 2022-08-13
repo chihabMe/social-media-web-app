@@ -17,6 +17,7 @@ import HomeLeftSide from './components/home-left';
 import HomeRightSide from './components/home-right';
 import Profile from './pages/profile/index';
 import { mediaSm } from './styles/sizes';
+import Search from './pages/search';
 let themeName = localStorage.getItem('theme')
 let initLight:boolean;
   if(themeName){
@@ -46,11 +47,11 @@ function App() {
 
         <Routes>
           <Route path='/' element={<WrapperComponent Element={Home} />}/>
+          <Route path='/search' element={<WrapperComponent Element={Search} />}/>
 
           <Route path='/profile' >
             <Route path='' element={<WrapperComponent Element={Profile} /> } />
             <Route  path=':username' element={<WrapperComponent Element={Profile} /> } />
-
           </Route>
  
           <Route path='/post/:slug' element={<PrivateRoute children={<Post/>}/>}/>

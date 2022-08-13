@@ -11,6 +11,7 @@ let initState:{
     login:(username:string,password:string)=>void,
     logout:()=>void,
     tokens:any,
+    refreshToken:()=>void,
 
 
 }
@@ -22,6 +23,7 @@ initState ={
     login:()=>{},
     logout:()=>{},
     tokens:null,
+    refreshToken:()=>{},
 }
 
 const userDecoder = (access:string|null ) => {
@@ -90,7 +92,6 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         let resp  = await fetch(endpoint,{headers:{"Authorization":`Bearer ${tokens.access}`}});
         let data = await resp.json()
         setUser(data)
-
         }
         get_user()
         },[])
@@ -102,10 +103,7 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         localStorage.removeItem("access")
         localStorage.removeItem("refresh")
     }
-    useEffect(()=>{
-        if(isLogged){
-
-        let timeout  = setTimeout(()=>{
+    let refreshToken = ()=>{
             fetch(`${baseApiUrl}/users/token/refresh/`,{
                 method:"post",
                 headers:{
@@ -122,7 +120,12 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
                 localStorage.removeItem("access")
             }
             })
-        },30000)
+    }
+    useEffect(()=>{
+        if(isLogged){
+
+        let timeout  = setTimeout(refreshToken
+        ,30000)
         return ()=>{clearTimeout(timeout)}
         }
     },[tokens])
@@ -135,6 +138,7 @@ export const AuthContextProvider:React.FC<{children:any}> = (props)=>{
         login,
         logout,
         tokens,
+        refreshToken
 
     }
     

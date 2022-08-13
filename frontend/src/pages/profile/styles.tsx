@@ -10,6 +10,7 @@ align-items: center;
 width: 100%;
 max-width: 50rem;
 margin: 0 auto;
+
 `
 export const ProfileTitle = styled.h1`
 font-size:1.9rem;
@@ -78,4 +79,11 @@ text-align: left;
 color:${props=>props.theme.title};
 font-size:1.7rem;
 cursor:pointer;
+`
+export const SearchResults = styled.div`
+width:100%;
+display: flex;
+flex-direction: column;
+gap:1rem;
+align-items:center;
 `

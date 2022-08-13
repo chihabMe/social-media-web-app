@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import useFetch from '../../../hooks/use-fetch';
 import comment from '../../../models/comment'
 import { baseApiUrl } from '../../../utils/globals';
@@ -6,8 +6,12 @@ import { RecentCommentList, RecentCommentItem, RecentCommentLink, RecentComments
 const RecentComments:React.FC<{username:string}> = ({username}) => {
   const {data:comments,request,isLoading}=useFetch()
   let endPoint = baseApiUrl+"/users/"+username+"/"+"recent-comments/"
+  let fetchedData = useRef(false)
   useEffect(()=>{
+    if(!fetchedData.current)
     request(endPoint,'get')
+    fetchedData.current=true
+
   },[])
   return (
     <RecentCommentsContainer>

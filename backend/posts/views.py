@@ -33,10 +33,7 @@ def posts_list(request,format=None):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
     return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-class PostsList(ListCreateAPIView):
-    queryset = Post.objects.all()
-    parser_classes=(FormParser,MultiPartParser)
-    serializer_class=PostSerializer
+
 @api_view(['GET','PUT','DELETE'])
 def post_details(request,slug):
     post = get_object_or_404(Post,slug=slug)
@@ -111,4 +108,15 @@ def post_like(request,post_slug):
     return Response(data=data,status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET'])
+def post_search(request):
+    q= request.GET.get("q")
+    if q:
+        object_list = Post.objects.filter(body__icontains=q)
+        paginator = PageNumberPagination()
+        paginator.page_size=5
+        results_page = paginator.paginate_queryset(object_list,request)
+        serializer = PostSerializer(results_page,context={'request':request},many=True)
+        return paginator.get_paginated_response(serializer.data)
+        
 

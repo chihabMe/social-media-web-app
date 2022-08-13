@@ -10,7 +10,7 @@ const showOnAnimation = keyframes`
         opacity: 1;
     }
 `
-export const PostItemContainer = styled(Link)`
+export const PostItemContainer = styled.div`
     cursor: pointer;
     text-decoration:none;
     width:100%;
@@ -22,9 +22,6 @@ export const PostItemContainer = styled(Link)`
     gap:1rem;
     border-radius: 10px;
     animation: ${showOnAnimation} 0.3s ease;
-    &:hover{
-        box-shadow: 0 0 2px 1px ${props=>props.theme.primary};
-    }
     @media screen and (max-width:${sm}) {
         width: 100%;
         
@@ -89,24 +86,43 @@ gap:1rem;
 `
 export const PostItemBottomTags = styled.div`
     display: flex;
-    gap:1rem;
+    gap:1.2rem;
     flex-wrap: wrap;
+    &:hover{
+
+    }
 `
 
-export const PostItemTag = styled.a`
+export const PostItemTag = styled(Link)`
 color:${props=>props.theme.primary};
 font-weight: bold;
-font-size:1.3rem;
+font-size:1.5rem;
+text-decoration:none;
 cursor: pointer;
+opacity: 0.9;
+&:hover{
+opacity: 1;
+}
 &::before{
     content:"#";
 }
 `
 
-export const PostItemBottomBody = styled.p`
-    font-size:1.3rem;
+export const PostItemBottomBody = styled.div`
+    
+    font-weight: bold;
+    text-decoration:none;
+    display: flex;
+    gap:3px;
+    flex-wrap: wrap;
+    font-size:1.8rem;
     font-weight: 500;
     text-align: left;
     color:${props=>props.theme.text};
-    height:2rem;
+    span{
+    font-size:1.5rem;
+    }
+    &:hover{
+
+    }
 `

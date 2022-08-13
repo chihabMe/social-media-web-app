@@ -38,9 +38,9 @@ def follow_user(request,username):
     return Response(data,status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def search_users(request):
-    q=request.data.get('q')
+    q=request.GET.get('q')
     if q:
         users = Profile.objects.filter(user__username__icontains=q)
         paginator = PageNumberPagination()
@@ -48,6 +48,7 @@ def search_users(request):
         result_page = paginator.paginate_queryset(users,request)
         serializer = UserSerializer(result_page,context={'request':request},many=True)
         return paginator.get_paginated_response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
     
 
 class MyTokenObtainPairView(TokenObtainPairView):

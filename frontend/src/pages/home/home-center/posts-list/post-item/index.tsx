@@ -1,45 +1,34 @@
 import React from "react";
+import { post } from "../../../../../models/post";
 import PostItemBottom from "./PostItemBottom";
 import PostItemCenter from "./PostItemCenter";
 import PostItemTop from "./PostItemTop";
 import { PostItemContainer } from "./styles";
 
-type resProps = {
-  avatar: string;
-  image?: string;
-  slug: string;
-  body: string;
-  userUsername: string;
-  comments: number;
-  likes: number;
-  tags?: string[];
-  element?: any;
-};
-const PostItem: React.FC<resProps> = ({
-  avatar,
+const PostItem: React.FC<post> = ({
+  avatar_image,
   slug,
   tags,
   image,
   body,
-  userUsername,
+  author,
   comments,
   likes,
-  element,
 }) => {
-  let minBody: string | string[] = body?.split(" ");
+  let minBody: string | string[] = body.split(" ");
   if (minBody.length >= 30) {
     minBody = minBody.slice(1, 2);
   }
   minBody = minBody.join(" ");
   return (
-    <PostItemContainer ref={element} to={`post/${slug}`}>
+    <PostItemContainer   >
       <PostItemCenter
-        userUserName={userUsername}
+        userUserName={author}
         comments={comments}
         likes={likes}
-        userAvatar={avatar}
+        userAvatar={avatar_image}
       />
-      <PostItemBottom body={minBody} tags={tags} />
+      <PostItemBottom slug={slug} body={minBody} tags={tags} />
       {image && <PostItemTop image={image} />}
     </PostItemContainer>
   );
